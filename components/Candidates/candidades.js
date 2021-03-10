@@ -18,7 +18,6 @@ export default function candidades() {
             setClaseDivUno(true)
             setClaseDivDos(false)
             setClaseDivTres(false)
-            alert('uno')
             break
     
            case 'dos':
@@ -32,7 +31,6 @@ export default function candidades() {
             setClaseDivUno(false)
             setClaseDivDos(false)
             setClaseDivTres(true)
-            alert('tres')
             break
     
           }
@@ -69,7 +67,7 @@ export default function candidades() {
         </div>
         {/* <!-- ,styles.tab one --> */}
         {(claseDivUno && <Tab11/>)}
-}
+
        {/* <!-- ,styles.tab two --> */}
        {(claseDivDos && <Tab21/>)}
 
