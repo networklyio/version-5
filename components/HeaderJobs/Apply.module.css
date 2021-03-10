@@ -1,0 +1,102 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.h1  {
+ font-size: 3rem;
+ color: #E87D1B;
+}
+
+.h2 {
+  font-size: 3rem;
+}
+
+.h22 {
+  font-size: 2rem;
+}
+
+.ul  {
+  margin-bottom: 50px;
+}
+
+.ul li {
+  padding: 0;
+}
+.pdfs {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.pdf1 {
+  margin-bottom: 25px;
+  display: flex;
+  width: 250px;
+}
+.pdf1:hover {
+  text-decoration: underline;
+}
+
+.videos {
+  display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.img {
+  width: 150px;
+}
+
+.left {
+  margin-left: 50px;
+}
+
+.submit {
+    margin-left: 25px;
+    width: 132px;
+    cursor: pointer;
+}
+
+.form {
+  margin-bottom: 100px;
+}
+
+@media all and (max-width: 1024px) {
+  .videos {
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .left {
+    margin: 0;
+  }
+}
+
+
+@media all and (max-width: 565px) {
+  .submit2 {
+    display: flex;
+  }
+  .submit {
+    margin: 0;
+    margin-top: 25px;
+  }
+}
+@media all and (max-width: 440px) {
+  .container {
+    width: 90%;
+  }
+}
+@media all and (max-width: 350px) {
+  .video1, .left {
+    width: 280px;
+    height: 200px;
+  }
+  .videos {
+    align-items: center;
+  }
+  .submit2 {
+    width: 100% ;
+  }
+}
+

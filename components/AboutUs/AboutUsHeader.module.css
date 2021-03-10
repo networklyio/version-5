@@ -1,0 +1,86 @@
+.header, .aboutUs {
+    
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-size: cover;
+}
+
+.aboutUs {
+  background: url(/assets/media/about-us-bg.jpg);
+  background-position: center !important;
+  height: 70vh !important;
+  background-size: cover;
+}
+
+.header::after {
+  content: '';
+  background: var(--black-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  opacity: .45;
+  z-index: -1;
+}
+
+.container {
+  height: 100%;
+  display: var(--flex);
+  justify-content: center;
+  align-items: center;
+  flex-direction: var(--flex-column);
+}
+
+.title {
+  color: var(--white-color);
+  width: 60%;
+}
+
+.aboutUsTitle {
+  text-align: center;
+  position: relative;
+  top: 100px;
+  width: 100% !important;
+}
+
+.title .h1 {
+  font-size: 5rem;
+}
+
+@media all and (max-width: 1500px) {
+
+  .title .h1 {
+      font-size: 4rem;
+  }
+}
+
+@media all and (max-width: 1150px) {
+
+  .title {
+      width: 70%;
+  }
+  .title .h1 {
+      font-size: 3.5rem;
+  }
+}
+
+@media all and (max-width: 640px) {
+  .title {
+      width: 90%;
+  }
+  .title .h1 {
+      font-size: 2rem;
+  }
+
+}
+
+@media all and (max-width: 360px) {
+  .title .h1 {
+      font-size: 1.6rem;
+  }
+}

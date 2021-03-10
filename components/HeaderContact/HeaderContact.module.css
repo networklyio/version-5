@@ -1,0 +1,152 @@
+
+.jobHeader {
+  background: url(/assets/media/contact/contact-us.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  height: 70vh;
+  background-size: cover;
+}
+
+.jobHeader::after {
+  content: '';
+  background: #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  opacity: .45;
+  z-index: -1;
+}
+
+.container {
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+}
+
+.title {
+  color:#fff;
+  width: 60% !important;
+}
+
+.title .h1 {
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+
+.title .p {
+  font-size: 1rem;
+  /* padding: 10px 0; */
+}
+
+.jobHeader .container .title {
+  width: 80%;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  -webkit-border-radius: 0px;
+}
+
+.input[type=checkbox] {
+-webkit-appearance: auto !important;
+-moz-appearance:    none;
+appearance:         none;
+border: 1px solid #000;
+cursor: pointer;
+}
+
+.input[type="submit"]{
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+
+.select {
+  -webkit-border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #fff;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjNzE3MTcxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIHN0eWxlPSJzaGFwZS1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uO3RleHQtcmVuZGVyaW5nOmdlb21ldHJpY1ByZWNpc2lvbjtpbWFnZS1yZW5kZXJpbmc6b3B0aW1pemVRdWFsaXR5OyIgdmlld0JveD0iMCAwIDY2OCAzNzUiIHg9IjBweCIgeT0iMHB4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4KICAgCiAgICAuZmlsMCB7ZmlsbDojNzE3MTcxfQogICAKICA8L3N0eWxlPjwvZGVmcz48Zz48cGF0aCBjbGFzcz0iZmlsMCIgZD0iTTM2MyAzNjNsMjkzIC0yOTJjMTYsLTE3IDE2LC00MyAwLC01OSAtMTYsLTE2IC00MywtMTYgLTU5LDBsLTI2MyAyNjMgLTI2MyAtMjYzYy0xNywtMTYgLTQzLC0xNiAtNTksMCAtMTYsMTYgLTE2LDQyIDAsNTlsMjkyIDI5MmMxNywxNiA0MywxNiA1OSwweiI+PC9wYXRoPjwvZz48L3N2Zz4=");
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position-x: -0;
+  background-position-y: 13px;
+  border: none;
+  cursor: pointer;
+  color: #727171;
+  padding: 10px;
+  padding-right: 2rem;
+  padding-left: 25px;
+  width: 300px;
+}
+
+.btn {
+  background-color: #E87D1B;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight:bold;
+  height: 40px;
+  text-transform: uppercase;
+  width: 160px;
+}
+
+.btnJobs {
+  width: 300px;
+}
+
+.btnJobMobile {
+  display: none;
+}
+
+@media all and (max-width: 1500px) {
+
+  .title .h1 {
+      font-size: 3rem;
+      margin-top: 100px;
+  }
+}
+@media all and (max-width: 1150px) {
+
+  .title .h1 {
+      font-size: 3.5rem;
+  }
+  .title {
+    width: 80% !important;
+  }
+}
+
+@media all and (max-width: 790px) {
+
+  .btnJobs {
+      display: none;
+  }
+  .btnJobMobile {
+      display: initial;
+      width: 100%;
+  }
+  .title {
+      width: 80%;
+  }
+  .jobTitle {
+      padding: 0 0 10px 0;
+  }
+
+}
+
+@media all and (max-width: 640px) {
+
+  .title .h1 {
+      font-size: 2.5rem;
+  }
+  .select {
+      width: 150px;
+  }
+}

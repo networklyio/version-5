@@ -1,0 +1,59 @@
+:root {
+  --orange-color: #E87D1B;
+  --btn-blue: #2D5FDE;
+  --font-color: #727171;
+  --footer-bg: #504E4E;
+  --footer-date: #242222;
+  --font-family: 'Inter', sans-serif;
+  --bold-txt: bold;
+  --dark-green: #9cc675;
+  --dark-yellow: #e89a3d;
+  --extra-light-brown:#fdf0d7;
+  --light-brown: #ecd5ab;
+  --dark-brown:#915b40;
+  --light-yellow:#f8e3a8;
+  --light-red:#f3ac99;
+  --light-teal:#a6c8cc;
+  --light-gray:#ddd5d6;
+  --theme-color2: #e89a3d;
+  --white-color: #fff;
+  --black-color: #000;
+  --flex: flex;
+  --flex-space: space-between;
+  --flex-column: column;
+
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+ul li {
+  padding: 0px 0px 0px 30px;
+}
+
+ul li a:hover {
+  border-bottom: 2px solid var(--orange-color);
+}
+
+::marker {
+   display: none;
+    background: transparent;
+    color: transparent;
+}
+

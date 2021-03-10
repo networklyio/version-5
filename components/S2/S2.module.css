@@ -1,0 +1,166 @@
+.section {
+  background: url(/assets/media/home/man-laptop.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh;
+  margin: 100px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.section::after {
+  content: '';
+  background:#000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  opacity: .45;
+  z-index: -1;
+}
+
+@supports ( -webkit-touch-callout : none) {
+.section {
+background-attachment:scroll;
+background-size: cover;
+  }
+}
+
+@supports not ( -webkit-touch-callout : none) {
+.section {
+background-attachment: fixed !important;
+}
+}
+
+.sectionText {
+  width: 50%;
+}
+
+.sectionText .h3  {
+  font-size: 1.8rem;
+  color: #fff;
+  padding: 0 0 10px;
+}
+
+.sectionText .p {
+  color: #fff;
+  width: 90%;
+}
+
+.sectionText .btnSide > .btn {
+  background-color: var(--btn-blue);
+}
+.sectionText .btnSide > .btn:nth-child(2) {
+  border-color:  #2D5FDE;
+  background-color: transparent;
+  color: #fff;
+}
+
+.btn {
+  border: none;
+  color: var(--white-color);
+  cursor: pointer;
+  font-weight: bold;
+  height: 60px;
+  text-transform: uppercase;
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s ease;
+}
+
+.sectionText .btnSide > .btn:hover {
+  background-color: #E87D1B;
+  border: none;
+}
+
+.btn:nth-child(2) {
+  color: var(--black-color);
+  background-color: transparent;
+  border: 1px solid  #E87D1B;
+  margin: 0 20px 0 0;
+
+}
+
+.sectionText > .btnSide  {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+@media all and (max-width: 1150px) {
+  .btn:nth-child(2) {
+      color: #fff;
+      margin: 20px 0;
+  }
+
+  .btnSide > .btn:nth-child(2) {
+      color: #000;
+      margin: 0 20px 0 0;
+  }
+  .sideText > .btnSide {
+      align-items: center;
+  }
+  .sectionText {
+      padding: 0 10px 0 0;
+      width: 60%;
+  }
+  .sectionText .h3 {
+      font-size: 1.5rem;
+  }
+  .sectionText .p {
+      width: 100%;
+  }
+}
+
+@media all and (max-width: 1100px) {
+  .sectionText {
+      margin: 0 auto;
+      width: 90%;
+  }
+}
+@media all and (max-width: 768px) {
+  .btn {
+    width: 160px;
+    height: 40px;
+  }
+  .section {
+    height: 80vh;
+  }
+}
+
+@media all and (max-width: 640px) {
+
+  .section {
+      margin: 50px 0;
+  }
+  .sectionText {
+      padding: 0;
+  }
+}
+
+@media all and (max-width: 414px) {
+  .section {
+      height: 80vh;
+  }
+}
+@media all and (max-width: 360px) {
+  .btn {
+    width: 300px;
+  }
+  .btnSide {
+    flex-direction: column-reverse !important;
+    align-items: center;
+  }
+  .btnSide > .btn:nth-child(2) {
+    color: #000;
+    margin: 0 !important;
+    margin-bottom: 20px !important;
+  }
+}

@@ -1,0 +1,203 @@
+.btnsRecruiting {
+  display: var(--flex);
+  justify-content: space-evenly;
+  padding: 5px;
+}
+
+.btns{
+  width: 33%;
+  background-color: var(--orange-color);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  padding: 15px 0px;
+  position: sticky;
+  z-index: 1;
+}
+.btns2 {
+  width: 33%;
+  background-color: var(--btn-blue);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  padding: 15px 0px;
+  position: sticky;
+  z-index: 1;
+}
+.btns3 {
+  width: 33%;
+  background-color: var(--btn-blue);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  padding: 15px 0px;
+  position: sticky;
+  z-index: 1;
+}
+
+.btns::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -20px;
+  border-width: 20px;
+  border-style: solid;
+  border-color: var(--orange-color) transparent transparent transparent;
+}
+
+.btns2::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -20px;
+  border-width: 20px;
+  border-style: none;
+  border-color: var(--btn-blue) transparent transparent transparent;
+}
+
+.btns3::after{
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -20px;
+  border-width: 20px;
+  border-style: none;
+  border-color: var(--btn-blue) transparent transparent transparent;
+}
+
+.btnPage {
+  width: 220px;
+  height: 60px;
+}
+
+.down {
+  margin-bottom: 20px;
+}
+
+.sideText > .btnSide,
+.sectionText > .btnSide  {
+  padding: 40px 0;
+  display: var(--flex);
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.sideText h3 {
+  font-size: 1.8rem;
+  color: var(--orange-color);
+  padding: 0 0 10px;
+}
+
+.sideText p {
+  color: var(--font-color);
+}
+
+.candidatesSection {
+  display: var(--flex);
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.picCandidates {
+  margin-top: 50px;
+}
+
+.picCandidates img {
+  width: 500px;
+  margin-right: 100px;
+}
+
+.two {
+  flex-direction: row-reverse;
+  text-align: end;
+}
+
+.two .btnSide {
+  justify-content: end;
+}
+
+.two .picCandidates img {
+  margin: 0 0 0 100px;
+}
+
+.pagesCandidates {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.wholeTabTwo,
+.wholeTabThree {
+  display: none;
+}
+
+.pages {
+  display: var(--flex);
+  font-size: 1.5rem;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.pages p {
+  margin-right: 50px;
+}
+
+.pages p:nth-child(1) {
+  background-color: var(--btn-blue);
+  width: 50px;
+  color: #fff;
+  text-align: center;
+}
+
+.pages i {
+  color: #2E3A59;
+  font-size: 2rem;
+}
+
+@media all and (max-width: 1100px) {
+
+  .candidatesSection {
+      width: 95%;
+  }
+  .picCandidates img {
+      margin-right: 30px;
+  }
+  .two .picCandidates img {
+  margin: 0 0 0 30px;
+  }
+  .pagesCandidates {
+      width: 95%;
+      margin-top: 0;
+  }
+}
+@media all and (max-width: 1000px) {
+
+  .candidatesSection {
+      flex-direction: var(--flex-column);
+  }
+  .picCandidates img, 
+  .two .picCandidates img {
+      width: 100%;
+      margin: 0;
+  }
+  .two {
+      text-align: start;
+  }
+  .two .btnSide {
+      justify-content: flex-end;
+  }
+
+}
+@media all and (max-width: 790px) {
+
+ .btnsRecruiting {
+  flex-direction: var(--flex-column);
+  }
+  .btns, .btns2, .btns3 {
+      width: 100%;
+  }
+}

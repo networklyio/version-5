@@ -1,0 +1,223 @@
+.section, .pic{
+  padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+}
+.btnsRecruiting {
+  display:flex;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+.btn{
+  background-color: #E87D1B;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  height: 60px;
+  text-transform: uppercase;
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s ease;
+}
+
+.btn:hover {
+  background-color: #2D5FDE;
+}
+
+.btns{
+  width: 33%;
+  background-color:  #E87D1B;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  padding: 15px 0px;
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+.btns2 {
+  width: 33%;
+  background-color:  #2D5FDE;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  padding: 15px 0px;
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+.btns3 {
+  width: 33%;
+  background-color:  #2D5FDE;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: center;
+  padding: 15px 0px;
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.professionalRecruiting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.professionalRecruiting2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+.professionalRecruiting3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
+
+.sideText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sideText .h3 {
+  font-size: 1.8rem;
+  color:  #E87D1B;
+  padding: 0 0 10px;
+}
+
+.sideText .p {
+  color: #727171;
+}
+
+
+.btnSide  {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.tabTwo, .tabThree {
+  display: none;
+}
+
+
+.btn:nth-child(2) {
+  color: #000;
+  background-color: transparent;
+  border: 1px solid  #E87D1B;
+  margin: 0 20px 0 0;
+  transition: .5s ease;
+
+}
+
+.btn:nth-child(2):hover {
+  color: #fff;
+  background-color: #2D5FDE;
+  border: none;
+
+}
+
+
+@media all and (max-width: 1150px) {
+
+  .btn:nth-child(2) {
+      color: #fff;
+      margin: 20px 0;
+  }
+  .professionalRecruiting,
+  .professionalRecruiting2,
+  .professionalRecruiting3 { 
+      align-items: flex-start;
+      flex-direction: column;
+      width: 90%;
+  }
+  .btnSide > .btn:nth-child(2) {
+      color: #000;
+      margin: 0 20px 0 0;
+  }
+}
+
+@media all and (max-width: 790px) {
+  .btnsRecruiting {
+      flex-direction:column;
+  }
+  .btns, .btns2, .btns3 {
+      width: 100%;
+  }
+  .pic .img {
+      width: 100%;
+  }
+
+}
+@media all and (max-width: 768px) {
+  .btn {
+    width: 160px;
+    height: 40px;
+  }
+
+}
+
+@media all and (max-width: 640px) {
+
+  .btnPage {
+      width: 45%;
+      height: 46px;
+  }
+}
+@media all and (max-width: 360px) {
+
+  .btn {
+    width: 300px;
+  }
+  .btnSide {
+    flex-direction: column-reverse;
+  }
+  .btnSide > .btn:nth-child(2) {
+    color: #000;
+    margin: 0 !important;
+    margin-bottom: 20px !important;
+  }
+}
+@media all and (max-width: 320px) {
+
+  .professionalRecruiting,
+  .professionalRecruiting2,
+  .professionalRecruiting3 {
+    width: 95%;
+  }
+  .sideText .h3 {
+    font-size: 1.6rem;
+  }
+}
+
+.none{
+  display: none;
+}
+.block{
+  display: block;
+}
+

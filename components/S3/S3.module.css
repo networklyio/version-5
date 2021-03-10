@@ -1,0 +1,117 @@
+.jobs {
+
+  text-align: center;
+}
+
+.jobH3 .p {
+  color: var(--font-color);
+  padding: 10px 0 50px 0;
+}
+
+.jobList {
+  display: var(--flex);
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px 0 20px 0;
+  border-top: 0.5px solid #A6A8A9;
+  /* border-bottom: 0.5px solid #A6A8A9; */
+  width: 90%;
+  margin: 0 auto;
+}
+
+.jobPosition {
+  align-items: center;
+  cursor: pointer;
+  display: var(--flex);
+  text-align: initial;
+  width: 33%;
+}
+
+.jobPosition .img {
+  width: 55px;
+  padding: 0 10px 0 0;
+}
+
+/* .jobTitle .h3 {
+  padding: 0 0 10px 0;
+} */
+
+.jobTitle .p {
+  color: var(--font-color);
+}
+
+.job2 {
+  border-top: none;
+}
+
+.location {
+  display: var(--flex);
+  width: 33%;
+  color: var(--font-color);
+  cursor: pointer;
+  align-items: center;
+}
+
+.location .fas {
+  margin: 0 10px 0 0;
+  color: #000;
+}
+
+.timePosition {
+  align-items: center;
+  background-color: #73D277;
+  color: #fff;
+  cursor: pointer;
+  display: var(--flex);
+  font-weight: var(--bold-txt);
+  height: 25px;
+  text-transform: uppercase;
+  justify-content: center;
+  width: 20%;
+}
+
+.partTime {
+  background-color: #D273C9;
+}
+
+@media all and (max-width: 1150px) {
+  .jobTitle .h3 {
+      font-size: 1rem;
+  }
+  .jobTitle .p, .location, .timePosition {
+      font-size: .9rem;
+  }
+}
+
+@media all and (max-width: 1000px) {
+
+  .jobs {
+      width: 100%;
+  }
+}
+
+@media all and (max-width: 790px) {
+  
+  .jobList {
+      display: inherit;
+  }
+  .jobPosition {
+      display: block;
+      width: 100%;
+  }
+  .jobTitle {
+      padding: 0 0 10px 0;
+  }
+  .location {
+      font-weight: var(--bold-txt);
+      padding: 0 0 10px 0;
+      width: 100%;
+      
+  }
+  /* .fas {
+      display: none;
+  } */
+  .timePosition {
+      width: 100%;
+  }
+}
