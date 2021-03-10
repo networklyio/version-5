@@ -7,7 +7,7 @@ import Tab3 from '../Tab3/Tab3'
 
 function S1() {
 
-  const [claseDivUno,setClaseDivUno]=useState(false)
+  const [claseDivUno,setClaseDivUno]=useState(true)
   const [claseDivDos,setClaseDivDos]=useState(false)
   const [claseDivTres,setClaseDivTres]=useState(false)
 
@@ -21,26 +21,21 @@ function S1() {
         setClaseDivUno(true)
         setClaseDivDos(false)
         setClaseDivTres(false)
-        alert('uno')
         break
 
        case 'dos':
         setClaseDivUno(false)
         setClaseDivDos(true)
           setClaseDivTres(false)
-          alert('dos')
         break
 
         case 'tres':
         setClaseDivUno(false)
         setClaseDivDos(false)
         setClaseDivTres(true)
-        alert('tres')
         break
-
       }
     }
-
   }
 
 useEffect(()=>{
