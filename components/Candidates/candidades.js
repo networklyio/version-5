@@ -24,7 +24,6 @@ export default function candidades() {
             setClaseDivUno(false)
             setClaseDivDos(true)
               setClaseDivTres(false)
-              alert('dos')
             break
     
             case 'tres':

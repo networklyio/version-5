@@ -28,12 +28,12 @@ export default function Header({navigation}) {
               <p>814-889-9125</p>
             </div>
             <div className={styles.logo, styles.logoMobile}>
-              <img src="/assets/media/logowhite.png" alt="Logo" />
+              <img src="/assets/media/logo-white.png" alt="Logo" />
             </div>
           </div>
           <div className={styles.navLinks}>
             <div className={styles.logo}>
-              <a href="/"><img src="/assets/media/logowhite.png" alt="Logo" /></a>
+              <a href="/"><img src="/assets/media/logo-white.png" alt="Logo" /></a>
             </div>
             <div className={styles.links}>
               <ul className={styles.ul}>
