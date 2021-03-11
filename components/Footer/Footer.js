@@ -12,10 +12,9 @@ import styles from '../Footer/Footer.module.css'
 export default function Footer() {
   return (
     <>
-      <footer className={styles.Logofooter}>
+      <footer className={styles.footer}>
         <div className={styles.logoFooter}>
-          <img className={styles.img} src="/assets/media/Logo-white.png" alt="company logo" />
-          <img className={styles.img} src="/assets/media/Logowhite.png" alt="company logo"  />
+          <img className={styles.img} src="/assets/media/logo-white.png" alt="company logo" />
         </div>
         <div className={styles.txt}>
           <h3 className={styles.h3}>for candidates</h3>
@@ -24,7 +23,8 @@ export default function Footer() {
             <li className={styles.li}>Interview Tips</li>
             <li className={styles.li}>CV Advice</li>
             <li className={styles.li}>Recent jobs</li>
-            <li className={styles.li}>Create account</li>
+            <li className={styles.li}>Jobs Alerts</li>
+            <li className={styles.li}>F.A.Q</li>
           </ul>
         </div>
         <div className={styles.txt}>
@@ -34,7 +34,9 @@ export default function Footer() {
             <li className={styles.li}>Get Started</li>
             <li className={styles.li}>Our Benefits</li>
             <li className={styles.li}>Our Services</li>
-            <li className={styles.li}><a href="/contact">Contact us</a></li>
+            <li className={styles.li}>About us</li>
+            <li className={styles.li}>Contact us</li>
+            <li className={styles.li}>F.A.Q</li>
           </ul>
         </div>
         <div className={styles.txt}>

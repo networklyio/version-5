@@ -1,11 +1,11 @@
 import React from 'react'
-import BgVideo from '../components/BgVideo/BgVideo'
+import HeaderLogin from '../components/HeaderLogin/HeaderLogin'
 import styles from '../components/Work-from-home/WorkFromHome.module.css'
 
 export default function Policies() {
   return (
     <>
-      <BgVideo />
+    <HeaderLogin/>
 <div className={styles.info}>
 <div className={styles.sectionText}>
 <h1 className={styles.h2}>Privacy Policy of Labor Staffers</h1>
