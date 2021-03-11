@@ -14,7 +14,11 @@ export default function Footer() {
     <>
       <footer className={styles.footer}>
         <div className={styles.logoFooter}>
+<<<<<<< HEAD
           <img className={styles.img} src="/assets/media/logo-white.png" alt="company logo" />
+=======
+          <img className={styles.img} src="/assets/media/logowhite.png" alt="company logo"  />
+>>>>>>> ac35017673e1dbe27411056564d40acd7071c1f3
         </div>
         <div className={styles.txt}>
           <h3 className={styles.h3}>for candidates</h3>
