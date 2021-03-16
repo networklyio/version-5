@@ -1,5 +1,5 @@
 export default {
-    title: "Labos Straffer",
+    title: "Labor Straffer",
     description: "Database of Jobs created with Next.js and Strapi",
     openGraph: {
         type: 'website',

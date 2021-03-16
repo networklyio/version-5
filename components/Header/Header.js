@@ -28,7 +28,7 @@ export default function Header({navigation}) {
               <p>814-889-9125</p>
             </div>
             <div className={styles.logo, styles.logoMobile}>
-              <img src="/assets/media/logo-white.png" alt="Logo" />
+              <img src="/assets/media/logo-white.png"  alt="Logo" />
             </div>
           </div>
           <div className={styles.navLinks}>
