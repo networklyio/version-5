@@ -3,13 +3,9 @@ import { NextSeo } from 'next-seo'
 import HeaderJobs from '../../../components/HeaderJobs/HeaderJobs'
 import styles from '../jobs.module.css'
 import Router from 'next/router'
-import useUser from '../../../hooks/useUser'
 import getConfig from 'next/config'
-import swal from 'sweetalert2'
-import {USES_STATES,currentUser} from '../../../hooks/useUser'
 import Swal from 'sweetalert2'
 import { parseCookies  } from 'nookies'
-import useActual from '../../../hooks/useActual'
 
 
 const { publicRuntimeConfig } = getConfig()
@@ -27,10 +23,10 @@ export default function job({ job }) {
     }
   }
 
-const [aplicado, setAplicado]= useState(0) 
-const [userName, setUserName] = useState()
+  const [userName, setUserName] = useState()
   const [userCv,setUserCv] = useState(null)
   const [userId,setUserId] = useState(null)
+  let repetido = 0
 
 
 useEffect(()=>{
@@ -46,7 +42,7 @@ useEffect(()=>{
 .then((response) =>response.json())
 .then((r)=>{
   if(r?.statusCode){
-    console.log('Hay StatusCode',r.statusCode)
+//    console.log('Hay StatusCode',r.statusCode)
     Router.push('/login')
   }
   if(r?.statusCode===undefined){
@@ -81,8 +77,15 @@ const  goToApply = (e)=>{
          text: 'You already applied to this lip service',
          footer: '<a href>Why do I have this issue?</a>'
        })
-       Router.back()
-      }})
+       repetido=repetido +1     }})
+       if(repetido>0) return
+
+      
+       window.localStorage.setItem('ApplyJob',JSON.stringify({
+        user:userId,
+        job:job.id,
+        offer:job.title
+      }))
      
  const data={aspirantes:userId}
 

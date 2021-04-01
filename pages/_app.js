@@ -8,6 +8,7 @@ import getConfig from 'next/config';
 import Router from 'next/router'
 import { parseCookies  } from 'nookies'
 import nookies from 'nookies'
+import {UserProvider} from '../context/UserContext'
 
 
 
@@ -21,10 +22,12 @@ function MyApp({ Component, pageProps, navigation }) {
   return (
     <>
       <DefaultSeo {...SEO} />
+      <UserProvider >
       <Header navigation={navigation}/>
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
-      </QueryClientProvider> 
+     </QueryClientProvider>
+     </UserProvider> 
       <Footer />
     </>)
 }
@@ -57,8 +60,13 @@ MyApp.getInitialProps = async ({ctx}) => {
     const res = await fetch(`${publicRuntimeConfig.API_URL}/navigations?isLoged=true`)
     const navigation = await res.json()
     return { navigation}
-
   }
+
+  if (isNotLoged===true) {
+    if (ctx.pathname === "/apply") {
+        redirectUser(ctx, "/login");
+    }
+}
 
   
 }

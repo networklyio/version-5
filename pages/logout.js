@@ -13,7 +13,7 @@ import redirect from 'nextjs-redirect'
 import React from 'react'
 
 export default function logout() {
-  const Redirect = redirect('/', { statusCode: 302 })
+ const Redirect = redirect('/', { statusCode: 302 })
 
  const [count, setCount] = useState(0)
     setCookie(null, 'jwt', undefined, {
@@ -21,10 +21,13 @@ export default function logout() {
     path: '/',
 })  
 
+useEffect(()=>{
+  window.localStorage.removeItem('logedUser')
+})
 
 
   return (
-    <Redirect>
+  <Redirect>
   <HeaderJobs>Redirecting to google!</HeaderJobs>
 </Redirect>
   )

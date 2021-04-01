@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import HeaderLogin from '../components/HeaderLogin/HeaderLogin'
 import styles from '../components/HeaderJobs/Apply.module.css'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
@@ -8,7 +8,8 @@ import Link from 'next/link'
 import { parseCookies  } from 'nookies'
 import getConfig from 'next/config'
 import Swal from 'sweetalert2';
-//import Router from 'next/router'
+import {UserContext} from '../context/UserContext'
+import {fueVisto} from '../services/users/login'
 
 
 
@@ -18,7 +19,7 @@ const { publicRuntimeConfig } = getConfig()
 
 export default function ApplyMe() {
 
-   const user = useUser()
+   const {user,loading} = useUser()
    const router = useRouter();
 
   const [userName, setUserName] = useState()
@@ -27,6 +28,12 @@ export default function ApplyMe() {
   const [userId,setUserId] = useState(null)
   const [userResumen, setUserResumen] = useState([])
 
+  const {usuario,logear,deslogear,visto} = useContext(UserContext)
+ 
+  console.log('usuario',usuario,user,loading)
+
+  
+  
 
   const jwt = parseCookies().jwt
 
@@ -46,8 +53,17 @@ export default function ApplyMe() {
           setUserResumen(res)
         })
     })
+    const jobJson = window.localStorage.getItem('ApplyJob')
+    if(jobJson){
+      const datos = JSON.parse(jobJson)
+      console.log(datos)
+      const visto = fueVisto(datos.user,datos.job) 
+    }
+
   },[])
   
+  console.log('usuario',usuario,user,loading)
+
   const upload = async (e)=>{
     e.preventDefault(); 
     console.clear()
@@ -74,12 +90,20 @@ export default function ApplyMe() {
         text: 'Something went wrong!',
         footer: '<a href>Why do I have this issue?</a>'
       })
-    }
-  
-    
+    }    
   }
  
-  
+  const handleStatement = evt=>{
+   evt.preventDefault()
+   console.log('Handle Event')
+   logear(userId)
+   console.log('usuario',usuario)
+   setStatement(userId)
+  }
+  {(loading && <div>Loading......</div>)}
+  {(user && <div>Usuario</div>)}
+
+
   return (
     <div>
       <HeaderLogin />
@@ -96,12 +120,21 @@ export default function ApplyMe() {
  <video width="320" height="240" controls className={styles.video1}>
   <source src={("/assets/media/jobs/video1.mp4")} type="video/mp4"/>
   Your browser does not support the video tag.
+ 
 </video>
 <video width="320" height="240" controls className={styles.left}>
   <source src={("/assets/media/jobs/video2.mp4")}  type="video/mp4"/>
   Your browser does not support the video tag.
-          </video>
-        </div>
+</video>
+<div>
+  <form onSubmit={handleStatement}>
+    <h3>I declare that I have seen the necessary and mandatory safety videos to be considered for the job</h3>
+    <h4>Id {user}</h4>
+    <button>send</button>
+  </form>
+</div>
+
+</div>
   <h2>Upload your resume or to create a resume click here</h2>
 
 {/* {userResumen.avatar && <img className={styles.img} src={`${publicRuntimeConfig.API_URL}${userResumen.avatar.url}` } alt={userResumen.name} width="30px"/>} */}
@@ -193,6 +226,20 @@ async function getMyResume(cv){
   return getResumeResponse
 }
 
+
+const setStatement = async (id)=>{
+  const jwt = parseCookies().jwt
+
+  const addStatement = await fetch(`${publicRuntimeConfig.API_URL}/statements`, {
+             method: "POST",
+             headers: {
+                 'Authorization': `Bearer ${jwt}`,
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({
+               user:id
+             })
+})}
 
 
 

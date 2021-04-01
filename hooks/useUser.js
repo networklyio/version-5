@@ -20,6 +20,8 @@ export const USER_STATES = {
 export default function useUser() {
   const [user, setUser] = useState(USER_STATES.NOT_KNOWN)
   const [loading, setLoading] =useState(false)
+  const [errores, setErrores] =useState(null)
+
 
   const router = useRouter()
 
@@ -36,10 +38,12 @@ export default function useUser() {
   }).then(response=>{
     if (!response.ok) throw Error(response.status)
     setUser(USER_STATES.NOT_LOGGED)
+    setLoading(false)
     return response
   }).then(response => (r)=> {
     console.log("ok")
     setUser('LOGGED')
+    setLoading(false)
     const resultado = response.json()
   }) 
   .catch(error => console.log(error))
@@ -50,5 +54,5 @@ export default function useUser() {
     user === USER_STATES.NOT_LOGGED && router.push("/login")
   }, [user])
  */
-  return user
+  return {user,loading}
 }

@@ -1,5 +1,5 @@
 import getConfig from 'next/config'
-import { useState } from 'react'
+import React,{ useState,useContext } from 'react'
 import { setCookie } from 'nookies'
 import Router from 'next/router'
 import styles from '../styles/Home.module.css'
@@ -9,16 +9,24 @@ import { parseCookies  } from 'nookies'
 import Swal from 'sweetalert2'
 import jwt_decode from "jwt-decode"
 import Cryptr from 'cryptr'
+import {UserContext} from '../context/UserContext'
+import loginServices from '../services/users/login'
+import redirect from 'nextjs-redirect'
+
 
 
 const { publicRuntimeConfig } = getConfig();
 
 function Login() {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('test1@gm.com')
+    const [password, setPassword] = useState('12345678')
     const [id, setId] =useState(undefined)
     const [userData, setUserData]=useState(undefined)
-    const [currentuserData, setCurrentUserData]=useState([])
+    const [currentuserData, setCurrentUserData]=useState(null)
+    const [errores, setErrores]=useState('')
+
+
+    // let {logear,setUsuario,usuario} = useContext(UserContext)
 
 
     async function handleLogin() {
@@ -30,7 +38,6 @@ function Login() {
         const login = await fetch(`${publicRuntimeConfig.API_URL}/auth/local`, {
             method: "POST",
             headers: {
-            
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -55,9 +62,9 @@ function Login() {
            //console.log('ADDRESPONSE',loginResponse,'LOGIN',login)
            const {id} = jwt_decode(loginResponse.jwt)
            //console.log(id)
-           //setTheUser(id,loginResponse.jwt)
+           setTheUser(id)
            Swal.fire(`Welcome to Labor Staffer`);
-           Router.push('/')        
+         Router.push('/')          
         }   
            
    } 
@@ -75,36 +82,42 @@ headers: {
       }
     }) 
     const userData = await res.json()
-    //console.log('User Data ',userData)
-
-    const cryptr = new Cryptr('edwinhenriquezh@gmail.com')
+    logear(userData)
     
-    //console.log('User Data ',userData.id)
-    ///console.log('User Data ',userData.email)
-    ///console.log('User Data ',userData.username)
+    // localStorage.setItem('bcript',encrypteduserID)
+    // localStorage.setItem('ccript',encryptedusername)
+    // localStorage.setItem('dcript',encrypteduserEmail)
+   }
+
+   const handLogin = async (e)=>{
+       e.preventDefault()
+try {
+       const userResult = await loginServices.login({
+        identifier: username,
+        password: password
+       })
+       //console.log(userResult.user)
+       setCurrentUserData(userResult.user)
+       window.localStorage.setItem('logedUser',JSON.stringify(userResult.user.cv))
+       setUsername('')
+       setPassword('')
+       console.log(currentuserData,userResult.jwt)
+       setCookie(null, 'jwt', userResult.jwt , {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+    })  
+        Router.push('/')
+Swal.fire(`Welcome to Labor Staffer`);
+
+} catch (error) {
+    setErrores('wrong credentials')
+    console.log(error,errores)
+    setTimeout(()=>{
+        setErrores(null)
+    },2000)
+}
+
     
-    const userId = userData.id 
-    const userEmail = userData.email
-    const username = userData.username 
-
-    // console.log('User Data ',userId)
-    // console.log('User Data ',userEmail)
-    // console.log('User Data ',username)
-
-    
-    const encryptedusername = cryptr.encrypt(username)
-    const encrypteduserID = cryptr.encrypt(userId)
-    const encrypteduserEmail = cryptr.encrypt(userEmail)
-
-    
-    localStorage.setItem('bcript',encrypteduserID)
-    localStorage.setItem('ccript',encryptedusername)
-    localStorage.setItem('dcript',encrypteduserEmail)
-
-     
-
-    //  const {bcript, ccript, dcript} = parseCookies()
-    //  console.log('De cookies', bcript,ccript,dcript)
    }
        
         
@@ -115,14 +128,17 @@ headers: {
         <HeaderLogin />
             <div>
                 <div className={styles.container1}>
-                    <div >
+                    <div > 
+                         {(errores && <h3>{errores}</h3>)}
                         <p>You need to login to access this page and apply for a job</p>
                     </div>
+                  
 
-                    <form className={styles.form}>
+
+                    <form className={styles.form} onSubmit={handLogin}>
                         <input className={styles.input} type="email" placeholder="Your email address"    onChange={e => setUsername(e.target.value) } value={username} required /><br />
                         <input className={styles.input} type="password" placeholder="Your password" onChange={e => setPassword(e.target.value) } value={password} required/><br />
-                        <button className={styles.btn2} type="button" onClick={() => handleLogin() }>Login</button>
+                        <button className={styles.btn2} type="submit">Login</button>
                     </form>
                 </div>
             </div>
