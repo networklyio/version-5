@@ -126,8 +126,12 @@ export default function ApplyMe() {
       <a href="/assets/pdf/I-9 Form .pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon />Download Form I-9</a>
       
       <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Form W-4</a>
+
+
+      <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>ESTE PDF lo mando ahorita</a>
       </div>
         <h2>Watch the security videos is mandatory to be considered for the job</h2>
+        <h2>We highly recommend to watch our <a className={styles.aa} href="/focal-points">Focal Points</a> with all the security videos</h2>
         <div className={styles.videos}>
  <video width="320" height="240" controls className={styles.video1}>
   <source src={("/assets/media/jobs/video1.mp4")} type="video/mp4"/>
@@ -138,17 +142,17 @@ export default function ApplyMe() {
   <source src={("/assets/media/jobs/video2.mp4")}  type="video/mp4"/>
   Your browser does not support the video tag.
 </video>
-<div>
-  <form onSubmit={handleStatement}>
-    <h3>I declare that I have seen the necessary and mandatory safety videos to be considered for the job</h3>
-    <h4>Id {verVideo}</h4>
-    {
-      (verVideo=='SI' && <button>send</button>)
-    }
-  </form>
-</div>
 
 </div>
+
+<form onSubmit={handleStatement}>
+    <h3>I declare that I have seen the necessary and mandatory safety videos to be considered for the job</h3>
+    {
+      (verVideo=='SI' && <button className={styles.botonq}>I declare that I saw the security videos</button>)
+    }
+  </form>
+
+
   <h2>Upload your resume or to create a resume click here</h2>
 
 {/* {userResumen.avatar && <img className={styles.img} src={`${publicRuntimeConfig.API_URL}${userResumen.avatar.url}` } alt={userResumen.name} width="30px"/>} */}

@@ -3,6 +3,16 @@
   margin: 0 auto;
 }
 
+.botonq:hover {
+  cursor: pointer;
+}
+
+.aa {
+  text-decoration: underline;
+}
+.aa:hover {
+  color: #E87D1B;
+}
 .h1  {
  font-size: 3rem;
  color: #E87D1B;

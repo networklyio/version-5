@@ -65,6 +65,10 @@
   color:  #E87D1B;
   font-size: 2.5rem;
 }
+.info .sectionText .h2:hover {
+  color:  #2D5FDE;
+  text-decoration: underline;
+}
 
 .info .sectionText .p {
   color:  #727171;
@@ -309,6 +313,16 @@
   }
 }
 
+@media all and (max-width: 460px) {
+  .iframe {
+     width: 320px;
+  }
+  .centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 @media all and (max-width: 360px) {
   .h1 {
       font-size: 1.6rem;
