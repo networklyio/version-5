@@ -9,7 +9,7 @@ import { parseCookies  } from 'nookies'
 import getConfig from 'next/config'
 import Swal from 'sweetalert2';
 import {UserContext} from '../context/UserContext'
-import {fueVisto} from '../services/users/login'
+import {fueVisto,saveVideoSee} from '../services/users/login'
 
 
 
@@ -27,10 +27,12 @@ export default function ApplyMe() {
   const [userCv,setUserCv] = useState(null)
   const [userId,setUserId] = useState(null)
   const [userResumen, setUserResumen] = useState([])
+  const [verVideo,setVerVideo] = useState('SI')
+  
 
   const {usuario,logear,deslogear,visto} = useContext(UserContext)
  
-  console.log('usuario',usuario,user,loading)
+  //console.log('usuario',usuario,user,loading)
 
   
   
@@ -40,7 +42,7 @@ export default function ApplyMe() {
   useEffect(()=>{
     const resultado = getMyData()
     resultado.then(r=>{
-      console.log('curriculo', r)
+      //console.log('curriculo', r)
       if(r.cv===null){createResume(r.id)}
       if(r.cv!==null & r.cv>0){
         setUserCv(r.cv)
@@ -49,20 +51,30 @@ export default function ApplyMe() {
         }
         const getResumen = getMyResume(r.cv)
         getResumen.then(res=>{
-          console.log(res, 'desde promesa')
+      //    console.log(res, 'desde promesa')
           setUserResumen(res)
         })
     })
-    const jobJson = window.localStorage.getItem('ApplyJob')
+
+    
+
+   const jobJson = window.localStorage.getItem('ApplyJob')
     if(jobJson){
       const datos = JSON.parse(jobJson)
-      console.log(datos)
-      const visto = fueVisto(datos.user,datos.job) 
+      fueVisto(datos.user,datos.job).then(r=>{
+        if(r.length>0){
+           console.log('No ver el Video, ya lo vio','ver el video: '+verVideo,'data',r)
+           setVerVideo('NO')
+        }else{
+          setVerVideo('SI')
+          console.log('Ver el video, no lo ha visto')
+        }
+      })
     }
 
   },[])
   
-  console.log('usuario',usuario,user,loading)
+  //console.log('usuario',usuario,user,loading)
 
   const upload = async (e)=>{
     e.preventDefault(); 
@@ -102,7 +114,7 @@ export default function ApplyMe() {
   }
   {(loading && <div>Loading......</div>)}
   {(user && <div>Usuario</div>)}
-
+  //{(verVideo=='NO' && <div>Ver Video</div>)}
 
   return (
     <div>
@@ -129,8 +141,10 @@ export default function ApplyMe() {
 <div>
   <form onSubmit={handleStatement}>
     <h3>I declare that I have seen the necessary and mandatory safety videos to be considered for the job</h3>
-    <h4>Id {user}</h4>
-    <button>send</button>
+    <h4>Id {verVideo}</h4>
+    {
+      (verVideo=='SI' && <button>send</button>)
+    }
   </form>
 </div>
 
@@ -229,6 +243,11 @@ async function getMyResume(cv){
 
 const setStatement = async (id)=>{
   const jwt = parseCookies().jwt
+  const datos = window.localStorage.getItem('ApplyJob')
+  let valores 
+  if(datos){
+    valores = JSON.parse(datos)
+  }
 
   const addStatement = await fetch(`${publicRuntimeConfig.API_URL}/statements`, {
              method: "POST",
@@ -237,7 +256,8 @@ const setStatement = async (id)=>{
                  'Content-Type': 'application/json'
              },
              body: JSON.stringify({
-               user:id
+               user:valores.user,
+               job:valores.job
              })
 })}
 

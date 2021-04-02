@@ -9,6 +9,6 @@ export const getCategoryState = (idCategory, idState)=>{
               .then(response=>{
               const {data} = response
               
-     console.log('Estados y cata', data, 'id categoria',idCategory,'id stade ', idState)
+     console.log('Estados y data', data, 'id categoria',idCategory,'id stade ', idState)
      return data
   })}

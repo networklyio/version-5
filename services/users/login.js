@@ -14,11 +14,25 @@ const login = async credentials =>{
 export default {login}
 
 
-export const fueVisto = async datos=>{
-  const response = await axios.post(`${publicRuntimeConfig.API_URL}/statements`,datos)
+export const fueVisto = async (user,job)=>{
+ // console.log(user,job)
+ let resp = false
+  const url =`${publicRuntimeConfig.API_URL}/statements?user=${user}&job=${job}`
+  const response = await axios.get(url)
   const data = response.data
-  console.log(data,datos)
-  return data 
+  console.log(data)
+  return data  
+ }
+
+export const saveVideoSee =  async (user,job)=>{
+  const url =`${publicRuntimeConfig.API_URL}/statements`
+  const response = await axios.post(url,{user:user,job:job})
+  const data = response.data
+  //console.log(data)
+  return data
 }
+  
+
+
 
 

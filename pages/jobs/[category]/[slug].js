@@ -46,7 +46,7 @@ useEffect(()=>{
     Router.push('/login')
   }
   if(r?.statusCode===undefined){
-    console.log('No Hay StatusCode',r.id,r.cv)
+//    console.log('No Hay StatusCode',r.id,r.cv)
     if(r.cv===null){
       createResume(r.id)
       setUserCv(r.cv)
@@ -69,7 +69,7 @@ const  goToApply = (e)=>{
   e.preventDefault()
   // console.log('Aplicando al Job',job)
      job.aspirantes.map( aspirante=>{   
-       console.log('por aqui') 
+//       console.log('por aqui') 
       if (userId == aspirante.id){ 
      Swal.fire({
          icon: 'warning',
