@@ -18,8 +18,8 @@ import redirect from 'nextjs-redirect'
 const { publicRuntimeConfig } = getConfig();
 
 function Login() {
-    const [username, setUsername] = useState('test1@gm.com')
-    const [password, setPassword] = useState('12345678')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const [id, setId] =useState(undefined)
     const [userData, setUserData]=useState(undefined)
     const [currentuserData, setCurrentUserData]=useState(null)
