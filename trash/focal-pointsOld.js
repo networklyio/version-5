@@ -2,7 +2,10 @@ import React from 'react'
 import HeaderLogin from '../components/HeaderLogin/HeaderLogin'
 import styles from '../components/Work-from-home/WorkFromHome.module.css'
 
-export default function focalPoint() {
+export default function ocalPoint() {
+
+  console.log(security)
+
   return (
     <>
     <HeaderLogin/>
@@ -10,7 +13,10 @@ export default function focalPoint() {
 <div className={styles.sectionText}>
 <h1 className={styles.h2}>PA OSHA CONSULTATION FOCAL POINTS SERIES</h1>
 <p className={styles.p}>The Pennsylvania OSHA Consultation Program developed this series of videos focusing on the top 25 areas identified by the Occupational Safety and Health Administration during inspections.  The video series can be used to supplement training that employers must provide to their employees.  The video series includes 25 videos that are available to help both employees and employers.</p>
-<p className={styles.p}>Focal Points Series</p>
+<p className={styles.p, styles.h2}>Focal Points Series</p>
+
+
+
 
 <h2 className={styles.h2}><a href="/walking-working-surfaces">Walking/Working Surfaces</a></h2>
 <p className={styles.p}>Department of Safety Sciences provides an informational video about the hazards associated with walking and working surfaces in general industry.</p>
