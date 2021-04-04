@@ -128,7 +128,7 @@ export default function ApplyMe() {
       <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Form W-4</a>
 
 
-      <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>ESTE PDF lo mando ahorita</a>
+      <a href="/assets/pdf/MP-Timecard.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>MP-Timecard</a>
       </div>
         <h2>Watch the security videos is mandatory to be considered for the job</h2>
         <h2>We highly recommend to watch our <a className={styles.aa} href="/focal-points">Focal Points</a> with all the security videos</h2>

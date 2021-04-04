@@ -108,5 +108,30 @@
   .submit2 {
     width: 100% ;
   }
+
+  .videoResponsive {
+    width: 280px;
+    height: 200px;
+  }
 }
+
+.videoResponsive {
+  position: relative;
+ 
+  padding-bottom: 56.25%; /* 16/9 ratio */
+  padding-top: 30px; /* IE6 workaround*/
+  height: 0;
+  overflow: hidden;   
+  }
+  
+  .videoResponsive iframe,
+  .videoResponsive object,
+  .videoResponsive embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  }
+
 

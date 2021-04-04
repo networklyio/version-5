@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from "next/router"
+import styles from '../../components/HeaderJobs/Apply.module.css'
+
 
 
 
@@ -19,7 +21,7 @@ export default function Point({slug,video,iframe}) {
   return (
     <>
      <HeaderLogin/>
-     <div>
+     <div className={styles.videoReposive}>
            <span dangerouslySetInnerHTML={{__html: iframe.video}} />          
      </div>
      <button onClick={() => {router.push(video.pdf)}} >pdf inf from {video.title}</button>
