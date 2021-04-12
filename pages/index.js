@@ -13,6 +13,7 @@ import S5 from '../components/S5/S5'
 const { publicRuntimeConfig } = getConfig()
 
 export default function Home({ jobs }) {
+  console.log(jobs,'desde index')
   return (
    <div>
      <BgVideo />

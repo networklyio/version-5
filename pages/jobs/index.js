@@ -87,7 +87,7 @@ export default function jobPage({ jobs, page, numJobs,category, states }) {
         {status === 'error' && <div>Error in loading</div>}
           {
 data.map(job=>(
-<Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category.slug}/${job.slug}`} key={job.id} > 
+<Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category?.slug}/${job.slug}`} key={job.id} > 
 <section className={styles.jobSearch} key={job.id}>
         <div className={styles.jobs}>
           <div className={styles.jobList}>
