@@ -1,53 +1,84 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import Select from 'react-select'
-import Link from 'next/link'
-
-
-
-
+import getConfig from 'next/config'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Select from 'react-select'
+import { useEffect, useState } from 'react'
 import { QueryClientProvider, useQuery, useQueryClient } from 'react-query'
-
 import styles from '../jobs/jobs.module.css'
 import RoomIcon from '@material-ui/icons/Room'
 import TuneIcon from '@material-ui/icons/Tune'
 import HeaderJobs from '../../components/HeaderJobs/HeaderJobs'
+import SearchInput from '../../components/SearchInput/SearchInput'
+import FilterJobs from '../../components/FilterJobs/FilterJobs'
+import noFilterJobs from '../../components/FilterJobs/NoFilterJobs'
 
 
 
-import getConfig from 'next/config'
 
-
-export default function jobPage({ jobs, page, numJobs,category, states }) {
+export default function JobsPage({ jobs, page, numJobs,category, states }) {
+  //console.log(jobs,page, numJobs)
   const router = useRouter()
   const queryClient = useQueryClient()
   const [categoryId, setCategoryId] = useState(null)
   const [stateId, setstateId] = useState(null)
   const [isFiltered, setIsFiltered] = useState(false)
-  const lastPage = Math.ceil(numJobs / 3)
+  const[imprime, setImprime]=useState([])
 
 
-  const getJobs = async (key) =>{
+
+  const getJobs = async (key) => {
     const idCategory = key.queryKey[1].category
     const stateId = key.queryKey[2].states
-    const query = []
+    console.log(idCategory,stateId)
 
+    const query = []
   if(idCategory){query.push(`category=${idCategory}`)}
   if(stateId){query.push(`state=${stateId}`)}
-  const str =`?_sort=id:DESC&${query.join('&')}`
+  const str =`?${query.join('&')}`
+
   console.log(str)
-  if(idCategory || stateId){ setIsFiltered(true)} else{setIsFiltered(false)}
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts${str}`)
-  return res.json() 
 
+
+    if(idCategory!==null || stateId !==null){setIsFiltered(true)}else{setIsFiltered(false)}
+    console.log(isFiltered,idCategory,stateId,str)
+    
+  // if(idCategory && stateId){
+  //     const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?category=${idCategory}&state=${stateId}`)
+  //       return res.json() 
+  //       console.log('categoria y estado ',res)
+  //       }
+  
+  // if(stateId){
+  //         const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?state=${stateId}`)
+  //           return res.json() 
+  //           }
+  
+  //   if(idCategory){
+  // const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?category=${idCategory}`)
+  //   return res.json() 
+  //   console.log('Solo Categorias',res)
+  //   }
+  
+    const res = await fetch(`${publicRuntimeConfig.API_URL}/posts${str}`)
+    const MyR = res.json()
+    console.log(MyR)
+    return res.json() 
   }
-
+  
+  
   const { data, status } = useQuery(['jobs', { category: categoryId }, { states: stateId }], getJobs, { initialData: jobs })
 
 
 
+  const lastPage = Math.ceil(numJobs / 3)
 
+  useEffect(()=>{
+  if(isFiltered==true){setImprime(data)}else{setImprime(jobs)}
+   
+  },[isFiltered,page])
+
+
+ 
   return (
     <>
     <QueryClientProvider client={queryClient}>
@@ -83,10 +114,8 @@ export default function jobPage({ jobs, page, numJobs,category, states }) {
         </div>
         <div className={styles.listado}>
         <>
-        {status === 'loading' && <div>Data is loading</div>}
-        {status === 'error' && <div>Error in loading</div>}
           {
-data.map(job=>(
+imprime.map(job=>(
 <Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category.slug}/${job.slug}`} key={job.id} > 
 <section className={styles.jobSearch} key={job.id}>
         <div className={styles.jobs}>
@@ -95,7 +124,7 @@ data.map(job=>(
           <img className={styles.img} src="/assets/media/home/paper-look.svg" alt="paper icon" />
           <div className={styles.jobTitle}>
             <h3 className={styles.h3}>{job.position}</h3><h4><small></small> </h4>
-            <p className={styles.p}>${job.min_salary} - ${job.max_salary}</p>
+            <p className={styles.p}>${job.min_salary} - ${job.max_salary}{job.id}</p>
           </div>
         </div >
         <div className={styles.location}>
@@ -130,9 +159,8 @@ data.map(job=>(
    </div>
    </QueryClientProvider>
     </>
-  )
+    )
 }
-
 
 
 const { publicRuntimeConfig } = getConfig()

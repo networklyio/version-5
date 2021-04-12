@@ -26,7 +26,7 @@ export default function Home({ jobs }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts`)
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC&_limit=8`)
   const jobs = await res.json()
   return {
     props: {
