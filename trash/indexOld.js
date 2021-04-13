@@ -7,10 +7,10 @@ import { QueryClientProvider, useQuery, useQueryClient } from 'react-query'
 import styles from '../jobs/jobs.module.css'
 import RoomIcon from '@material-ui/icons/Room'
 import TuneIcon from '@material-ui/icons/Tune'
-import HeaderJobs from '../../components/HeaderJobs/HeaderJobs'
-import SearchInput from '../../components/SearchInput/SearchInput'
-import FilterJobs from '../../components/FilterJobs/FilterJobs'
-import noFilterJobs from '../../components/FilterJobs/NoFilterJobs'
+import HeaderJobs from '../components/HeaderJobs/HeaderJobs'
+import SearchInput from '../components/SearchInput/SearchInput'
+import FilterJobs from '../components/FilterJobs/FilterJobs'
+import noFilterJobs from '../components/FilterJobs/NoFilterJobs'
 
 
 

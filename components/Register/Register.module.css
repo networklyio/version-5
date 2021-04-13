@@ -33,3 +33,11 @@
   width: 300px;
   padding: 20px;
 }
+
+.register {
+  text-align: center;
+}
+.register2:hover { 
+  color: #e87d1b;
+  text-decoration: underline;
+}

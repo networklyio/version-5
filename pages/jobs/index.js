@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 
 import { useRouter } from 'next/router'
-import { QueryClientProvider, useQuery, useQueryClient } from 'react-query'
+import { QueryClientProvider, useQuery, useQueryClient , usePaginatedQuery} from 'react-query'
 
 import styles from '../jobs/jobs.module.css'
 import RoomIcon from '@material-ui/icons/Room'
@@ -18,6 +18,8 @@ import HeaderJobs from '../../components/HeaderJobs/HeaderJobs'
 
 import getConfig from 'next/config'
 
+const perPage=100
+
 
 export default function jobPage({ jobs, page, numJobs,category, states }) {
   const router = useRouter()
@@ -25,7 +27,8 @@ export default function jobPage({ jobs, page, numJobs,category, states }) {
   const [categoryId, setCategoryId] = useState(null)
   const [stateId, setstateId] = useState(null)
   const [isFiltered, setIsFiltered] = useState(false)
-  const lastPage = Math.ceil(numJobs / 3)
+  const [datos, setDatos] = useState([])
+  const lastPage = Math.ceil(numJobs / perPage)
 
 
   const getJobs = async (key) =>{
@@ -35,9 +38,13 @@ export default function jobPage({ jobs, page, numJobs,category, states }) {
 
   if(idCategory){query.push(`category=${idCategory}`)}
   if(stateId){query.push(`state=${stateId}`)}
-  const str =`?_sort=id:DESC&${query.join('&')}`
+  const str =`?${query.join('&')}`
   console.log(str)
-  if(idCategory || stateId){ setIsFiltered(true)} else{setIsFiltered(false)}
+  if(idCategory || stateId){ 
+    setIsFiltered(true)
+  } else{
+    setIsFiltered(false)
+  }
   const res = await fetch(`${publicRuntimeConfig.API_URL}/posts${str}`)
   return res.json() 
 
@@ -51,7 +58,7 @@ export default function jobPage({ jobs, page, numJobs,category, states }) {
   return (
     <>
     <QueryClientProvider client={queryClient}>
-   <HeaderJobs />
+    <HeaderJobs />
 
    <div className={styles.principal}>
    <div  className={styles.filtro}>
@@ -85,7 +92,7 @@ export default function jobPage({ jobs, page, numJobs,category, states }) {
         <>
         {status === 'loading' && <div>Data is loading</div>}
         {status === 'error' && <div>Error in loading</div>}
-          {
+        { status === 'success' &&
 data.map(job=>(
 <Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category?.slug}/${job.slug}`} key={job.id} > 
 <section className={styles.jobSearch} key={job.id}>
@@ -118,7 +125,7 @@ data.map(job=>(
        (!isFiltered && (
       <div className={styles.btnPaginate}>
       <button onClick={() => router.push(`/jobs?page=${page - 1}`)}
-        disabled={page <= 1} className={styles.previous}>previous</button>
+        disabled={page <= 1} className={styles.previous}>previous{numJobs}</button>
       <button onClick={() => router.push(`/jobs?page=${page + 1}`)}
         disabled={page >= lastPage} className={styles.next}>next</button>
       </div>))
@@ -138,13 +145,13 @@ data.map(job=>(
 const { publicRuntimeConfig } = getConfig()
 
 export async function getServerSideProps({ query: { page = 1 } }) {
-  const start = +page === 1 ? 0 : (+page - 1) * 8
+  const start = +page === 1 ? 0 : (+page - 1) * perPage
 
   const resJobs = await fetch(`${publicRuntimeConfig.API_URL}/posts/count`)
   const numJobs = await resJobs.json()
 
 
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC&_limit=8&_start=${start}`)
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_limit=${perPage}&_start=${start}`)
   const data = await res.json()
 
   const resCategory = await fetch(`${publicRuntimeConfig.API_URL}/categories`)
