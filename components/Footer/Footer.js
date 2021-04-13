@@ -19,33 +19,29 @@ export default function Footer() {
         <div className={styles.txt}>
           <h3 className={styles.h3}>for candidates</h3>
           <ul className={styles.ul}>
-            <li className={styles.li}>Career Advice</li>
-            <li className={styles.li}>Interview Tips</li>
-            <li className={styles.li}>CV Advice</li>
-            <li className={styles.li}>Recent jobs</li>
-            <li className={styles.li}>Jobs Alerts</li>
-            <li className={styles.li}>F.A.Q</li>
+            <li className={styles.li}><a href="/candidates">Career Advice</a></li>
+            <li className={styles.li}><a href="/candidates">Interview Tips</a></li>
+            <li className={styles.li}><a href="/candidates">CV Advice</a></li>
+            <li className={styles.li}><a href="/jobs">Recent jobs</a></li>
+        
           </ul>
         </div>
         <div className={styles.txt}>
           <h3 className={styles.h3}>for employers</h3>
           <ul className={styles.ul}>
-            <li className={styles.li}>Why Labor Staffers</li>
-            <li className={styles.li}>Get Started</li>
-            <li className={styles.li}>Our Benefits</li>
-            <li className={styles.li}>Our Services</li>
-            <li className={styles.li}>About us</li>
-            <li className={styles.li}>Contact us</li>
-            <li className={styles.li}>F.A.Q</li>
+            <li className={styles.li}><a href="/employers">Get Started</a></li>
+            <li className={styles.li}><a href="/services">Our Services</a></li>
+            <li className={styles.li}><a href="/about">About us</a></li>
+            <li className={styles.li}><a href="/contact">Contact us</a></li>
           </ul>
         </div>
         <div className={styles.txt}>
           <h3 className={styles.h3}>contact us</h3>
           <ul className={styles.ul}>
             <li className={styles.li}><i className={styles.i}><RoomIcon /></i>524 3rd Avenue, Duncansville, PA 16635</li>
-            <li className={styles.li}><i className={styles.i}><EmailIcon /></i>Dave@laborstaffers.com</li>
+            <li className={styles.li}><i className={styles.i}><EmailIcon /></i><a href="mailto:Dave@laborstaffers.com">Dave@laborstaffers.com</a></li>
             <li className={styles.li}><i className={styles.i}><PhoneIcon /></i>+1 (814) 889-9125</li>
-            <li className={styles.li}><i className={styles.i}><ApartmentIcon /></i>Labor Staffers</li>
+         
             <div className={styles.socialIcons, styles.up}>
               <a className={styles.a} href="https://www.facebook.com/laborstaffers/"><i><FacebookIcon /></i></a>
               <a className={styles.a} href="https://www.instagram.com/laborstaffers/"><i><InstagramIcon /></i></a>
