@@ -4,19 +4,14 @@ import RoomIcon from '@material-ui/icons/Room'
 import Link from 'next/link'
 
 function S3({jobs}) {
-  //console.log('Jobs de Clase,', jobs)
+console.log('Jobs de Clase,', jobs)
   return (
     <>
    
-      <section className={styles.jobs}>
-        <div className={styles.jobH3}>
-          <h3 className={styles.h3}>Open Positions From All Over US</h3>
-          <p className={styles.p}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis blanditiis facere tempore.</p>
-        </div>
-      </section>
+     
       {
         jobs.map(job=>(
-          <Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category.slug}/${job.slug}`} key={job.id} > 
+          <Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category?.slug}/${job.slug}`} key={job.id} > 
           <section key={job.id}>
         <div className={styles.jobList}>
         

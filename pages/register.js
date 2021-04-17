@@ -68,6 +68,7 @@ function Register() {
                         <input className={styles.input}  type="password" onChange={e => setPassword(e.target.value) } value={password} placeholder="Password"/><br />
                         <button className={styles.btn2} type="button" onClick={() => handleRegister() }>Register</button>
                     </form>
+                    <p className={styles.register}>Or <a className={styles.register2} href="/login">login to your account</a></p>
                 </div>
             </div>
 		</>

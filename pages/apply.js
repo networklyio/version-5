@@ -10,6 +10,7 @@ import getConfig from 'next/config'
 import Swal from 'sweetalert2';
 import {UserContext} from '../context/UserContext'
 import {fueVisto,saveVideoSee} from '../services/users/login'
+import CheckIcon from '@material-ui/icons/Check';
 
 
 
@@ -146,9 +147,9 @@ export default function ApplyMe() {
 </div>
 
 <form onSubmit={handleStatement}>
-    <h3>I declare that I have seen the necessary and mandatory safety videos to be considered for the job</h3>
+    <h3>I declare that I watched the safety videos to be considered for the job <CheckIcon/></h3>
     {
-      (verVideo=='SI' && <button className={styles.botonq}>I declare that I saw the security videos</button>)
+      (verVideo=='SI' && <button className={styles.botonqq}>I declare that I saw the security videos</button>)
     }
   </form>
 

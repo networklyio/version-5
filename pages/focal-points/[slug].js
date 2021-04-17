@@ -3,9 +3,6 @@ import Link from 'next/link'
 import { useRouter } from "next/router"
 import styles from '../../components/HeaderJobs/Apply.module.css'
 
-
-
-
 import HeaderLogin from '../../components/HeaderLogin/HeaderLogin'
 import {security} from '../../constants/index'
 import {videos} from '../../constants/iframe'
@@ -21,10 +18,10 @@ export default function Point({slug,video,iframe}) {
   return (
     <>
      <HeaderLogin/>
-     <div className={styles.videoReposive}>
+     <div className={styles.toto}>
            <span dangerouslySetInnerHTML={{__html: iframe.video}} />          
+     <button className={styles.toto2} onClick={() => {router.push(video.pdf)}} >Download PDF {video.title}</button>
      </div>
-     <button onClick={() => {router.push(video.pdf)}} >pdf inf from {video.title}</button>
 
      
     </>

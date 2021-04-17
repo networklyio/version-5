@@ -139,7 +139,8 @@ Swal.fire(`Welcome to Labor Staffer`);
                         <input className={styles.input} type="email" placeholder="Your email address"    onChange={e => setUsername(e.target.value) } value={username} required /><br />
                         <input className={styles.input} type="password" placeholder="Your password" onChange={e => setPassword(e.target.value) } value={password} required/><br />
                         <button className={styles.btn2} type="submit">Login</button>
-                    </form>
+                <p className={styles.register}>Or <a className={styles.register2} href="/register">create your account</a></p>
+                </form>
                 </div>
             </div>
 		</>

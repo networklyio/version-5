@@ -25,7 +25,7 @@ function About() {
         <div className={styles.sectionText}>
           < h2 className={
             styles.h2}>Looking for your next great hire? We can help with that too</h2>
-          <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p className={styles.p}>We have experience and a selective selection process to choose the best candidates for your company, we know that it can be really expensive and requires a great investment of effort and time to get highly trained personnel for the vacancies available in your company, here at Labor Staffers we do it for you with the quality guarantee that we offer. If you are looking for short, medium or long-term employment relationships, you are in the right place.</p>
           <div className={styles.servicesList}>
             <ul className={styles.ul}>
               <li className={styles.li}>Full time jobs</li>
@@ -41,7 +41,7 @@ function About() {
         <div className={styles.sectionText}>
           < h2 className={
             styles.h2}>Our values and beliefs help us find the perfect match</h2>
-          <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p className={styles.p}>The perfect match requires a great search, not everyone can hold a position in the same way. We believe that the right employee has to fit within a professional and personal profile.</p>
           <div className={styles.btnSide}>
             <button onClick={() => {router.push("/contact")}} className={styles.btnPage}>contact us</button>
           </div>
@@ -49,7 +49,7 @@ function About() {
         <div className={styles.sectionText}>
           < h2 className={
             styles.h2}>Security is Mandatory</h2>
-          <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p className={styles.p}>Safety has a high priority within Labor Staffers, all of our candidates and visitors can see more than 20 safety videos that indicate the best practices of operating certain work equipment and taking precautions in multiple circumstances.</p>
           <div className={styles.btnSide}>
             <button onClick={() => {router.push("/focal-points")}} className={styles.btnPage}>Focal Points</button>
           </div>
@@ -57,11 +57,11 @@ function About() {
         <div className={styles.sectionText}>
           < h2 className={
             styles.h2}>We care about the priorities of our clients</h2>
-          <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p className={styles.p}>We know the priorities of our clients, we care about them and we consider finding the best candidates, we provide the necessary tools to avoid work accidents and that our clients can have highly trained personnel willing to give their best.</p>
         </div>
         <div className={styles.sectionText}>
           < h2 className={styles.h2}>Our areas of expertise</h2>
-          <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          <p className={styles.p}>We offer different professional fields, from technology, support, engineering, sales, design to heavy duty personnel.</p>
         </div>
         <div className={styles.breaker}>
           < div className={styles.iconSection}>

@@ -3,6 +3,7 @@
   margin: 0 auto;
 }
 
+
 .botonq:hover {
   cursor: pointer;
 }
@@ -72,6 +73,24 @@
   margin-bottom: 100px;
 }
 
+.toto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px 50px;
+}
+
+.toto2 {
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.videoResponsive {
+  width: 280px;
+  height: 200px;
+}
+
 @media all and (max-width: 1024px) {
   .videos {
     flex-direction: column;
@@ -124,14 +143,5 @@
   overflow: hidden;   
   }
   
-  .videoResponsive iframe,
-  .videoResponsive object,
-  .videoResponsive embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 50%;
-  }
 
 
