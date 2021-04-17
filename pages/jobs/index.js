@@ -121,15 +121,7 @@ data.map(job=>(
       </Link>
 
 ))} 
-     {
-       (!isFiltered && (
-      <div className={styles.btnPaginate}>
-      <button onClick={() => router.push(`/jobs?page=${page - 1}`)}
-        disabled={page <= 1} className={styles.previous}>previous{numJobs}</button>
-      <button onClick={() => router.push(`/jobs?page=${page + 1}`)}
-        disabled={page >= lastPage} className={styles.next}>next</button>
-      </div>))
-     }
+    
 
    </>
   
