@@ -138,13 +138,11 @@ if(userId ===undefined){
           
           <p className={styles.p}>{job.position}</p>
           <p className={styles.p}>{job.body}</p>
-          <p className={styles.p}>{job.body}</p>
           <p className={styles.p}>Responsibilities: {job.responsibilities}</p>
           <p className={styles.p}>Qualifications: {job.qualifications}</p>
           <p className={styles.p}>state: {(job.state && job.state.name)}, city:{job.City}</p>
           <p className={styles.p}>$ {job.min_salary} - $ {job.max_salary}</p>
-                    
-          <p className={styles.p}>{job.body}</p>
+       
           {(userId && (
           <div className={styles.btnSide}>
             <button  className={styles.btnPage} >apply</button>
