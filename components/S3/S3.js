@@ -19,7 +19,7 @@ console.log('Jobs de Clase,', jobs)
             <img className={styles.img} src="/assets/media/home/paper-look.svg" alt="paper icon" />
             <div className={styles.jobTitle}>
               <h3 className={styles.h3}>{job.position}</h3>
-              <p className={styles.p}>${job.min_salary} - ${job.max_salary}, full relocation</p>
+              <p className={styles.p}>${job.min_salary} - ${job.max_salary}</p>
             </div>
           </div >
           <div className={styles.location}>
