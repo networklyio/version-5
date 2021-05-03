@@ -8,9 +8,9 @@ export default function ContactUs() {
 
     emailjs.sendForm('service_ffu9hd5', 'template_7zynzsf', e.target, 'user_1T3Rt1uZ4wRLbSCADDUdz')
         .then((result) => {
-            console.log(result.text);
+            //console.log(result.text);
         }, (error) => {
-            console.log(error.text);
+            //console.log(error.text);
         });
         e.target.reset()
     }

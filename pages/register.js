@@ -14,9 +14,9 @@ const { publicRuntimeConfig } = getConfig();
 
 function Register() {
     destroyCookie(null, 'jwt')
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('registro de prueba 3')
+    const [email, setEmail] = useState('registro3@gmail.com')
+    const [password, setPassword] = useState('12345678')
 
     async function handleRegister() {
         const registerInfo = {
@@ -45,12 +45,16 @@ function Register() {
           }
           
           if(register.status === 200){
-           Swal.fire(`Welcome to Labor Staffer...please login now`);
-           //Router.back()   
-           Router.push('/login')       
+           Swal.fire(`Welcome to Labor Staffer...please login now`)
+           .then((result) => {
+            //console.log(result);
+            if(result) {
+             window.location = "/login";
+            }
+          })                
         }   
 
-       //Router.push('/')
+     
     }
 
 	return (

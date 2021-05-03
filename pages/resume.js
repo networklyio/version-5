@@ -71,8 +71,13 @@ export default function CreateResume() {
    const resultado = updateResume(userId,userCv, data, userName)
    resultado.then(res=>{
       //.log(res)
-      Swal.fire('summary correctly updated')
-      Router.push('/')
+      Swal.fire('summary correctly updated').then((result) => {
+        //console.log(result);
+        if(result) {
+         window.location = "/";
+        }
+      })   
+     
    })
   
          
@@ -90,7 +95,8 @@ e => setPhone(e.target.value)
      <br/>
       <br />
       <section className={styles.contenedor}>
-
+       { (userName && <h1>{userName}</h1>)
+}
      <form onSubmit={handleSubmit(onSubmit)}  encType =  "multipart/form-data">
                 <div className={styles.intro}>
                 <label className={styles.label} htmlFor="phone">Phone number <span className={styles.span}>*</span></label>

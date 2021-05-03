@@ -196,6 +196,9 @@ margin: 0 auto;
   flex-grow: 4; 
 }
 
+.filterItem{
+  margin-top:20px ;
+}
 @media all and (max-width: 1440px) {
 
    .principal {

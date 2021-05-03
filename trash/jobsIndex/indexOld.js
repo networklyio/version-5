@@ -1,87 +1,64 @@
-import getConfig from 'next/config'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
+import React from 'react'
+import { useEffect, useState } from 'react'
 import Select from 'react-select'
-import { QueryClientProvider, useQuery, useQueryClient } from 'react-query'
+import Link from 'next/link'
+
+
+
+
+import { useRouter } from 'next/router'
+import { QueryClientProvider, useQuery, useQueryClient , usePaginatedQuery} from 'react-query'
+
 import styles from '../jobs/jobs.module.css'
 import RoomIcon from '@material-ui/icons/Room'
 import TuneIcon from '@material-ui/icons/Tune'
-import HeaderJobs from '../components/HeaderJobs/HeaderJobs'
-import SearchInput from '../components/SearchInput/SearchInput'
-import FilterJobs from '../components/FilterJobs/FilterJobs'
-import noFilterJobs from '../components/FilterJobs/NoFilterJobs'
+import HeaderJobs from '../../components/HeaderJobs/HeaderJobs'
 
 
 
+import getConfig from 'next/config'
 
-export default function JobsPage({ jobs, page, numJobs,category, states }) {
-  //console.log(jobs,page, numJobs)
+const perPage=100
+
+
+export default function jobPage({ jobs, page, numJobs,category, states }) {
   const router = useRouter()
   const queryClient = useQueryClient()
   const [categoryId, setCategoryId] = useState(null)
   const [stateId, setstateId] = useState(null)
   const [isFiltered, setIsFiltered] = useState(false)
-  const[imprime, setImprime]=useState([])
+  const [datos, setDatos] = useState([])
+  const lastPage = Math.ceil(numJobs / perPage)
 
 
-
-  const getJobs = async (key) => {
+  const getJobs = async (key) =>{
     const idCategory = key.queryKey[1].category
     const stateId = key.queryKey[2].states
-    console.log(idCategory,stateId)
-
     const query = []
+
   if(idCategory){query.push(`category=${idCategory}`)}
   if(stateId){query.push(`state=${stateId}`)}
   const str =`?${query.join('&')}`
-
   console.log(str)
-
-
-    if(idCategory!==null || stateId !==null){setIsFiltered(true)}else{setIsFiltered(false)}
-    console.log(isFiltered,idCategory,stateId,str)
-    
-  // if(idCategory && stateId){
-  //     const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?category=${idCategory}&state=${stateId}`)
-  //       return res.json() 
-  //       console.log('categoria y estado ',res)
-  //       }
-  
-  // if(stateId){
-  //         const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?state=${stateId}`)
-  //           return res.json() 
-  //           }
-  
-  //   if(idCategory){
-  // const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?category=${idCategory}`)
-  //   return res.json() 
-  //   console.log('Solo Categorias',res)
-  //   }
-  
-    const res = await fetch(`${publicRuntimeConfig.API_URL}/posts${str}`)
-    const MyR = res.json()
-    console.log(MyR)
-    return res.json() 
+  if(idCategory || stateId){ 
+    setIsFiltered(true)
+  } else{
+    setIsFiltered(false)
   }
-  
-  
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts${str}`)
+  return res.json() 
+
+  }
+
   const { data, status } = useQuery(['jobs', { category: categoryId }, { states: stateId }], getJobs, { initialData: jobs })
 
 
 
-  const lastPage = Math.ceil(numJobs / 3)
 
-  useEffect(()=>{
-  if(isFiltered==true){setImprime(data)}else{setImprime(jobs)}
-   
-  },[isFiltered,page])
-
-
- 
   return (
     <>
     <QueryClientProvider client={queryClient}>
-   <HeaderJobs />
+    <HeaderJobs />
 
    <div className={styles.principal}>
    <div  className={styles.filtro}>
@@ -113,9 +90,11 @@ export default function JobsPage({ jobs, page, numJobs,category, states }) {
         </div>
         <div className={styles.listado}>
         <>
-          {
-imprime.map(job=>(
-<Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category.slug}/${job.slug}`} key={job.id} > 
+        {status === 'loading' && <div>Data is loading</div>}
+        {status === 'error' && <div>Error in loading</div>}
+        { status === 'success' &&
+data.map(job=>(
+<Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category?.slug}/${job.slug}`} key={job.id} > 
 <section className={styles.jobSearch} key={job.id}>
         <div className={styles.jobs}>
           <div className={styles.jobList}>
@@ -123,7 +102,7 @@ imprime.map(job=>(
           <img className={styles.img} src="/assets/media/home/paper-look.svg" alt="paper icon" />
           <div className={styles.jobTitle}>
             <h3 className={styles.h3}>{job.position}</h3><h4><small></small> </h4>
-            <p className={styles.p}>${job.min_salary} - ${job.max_salary}{job.id}</p>
+            <p className={styles.p}>${job.min_salary} - ${job.max_salary}</p>
           </div>
         </div >
         <div className={styles.location}>
@@ -142,15 +121,7 @@ imprime.map(job=>(
       </Link>
 
 ))} 
-     {
-       (!isFiltered && (
-      <div className={styles.btnPaginate}>
-      <button onClick={() => router.push(`/jobs?page=${page - 1}`)}
-        disabled={page <= 1} className={styles.previous}>previous</button>
-      <button onClick={() => router.push(`/jobs?page=${page + 1}`)}
-        disabled={page >= lastPage} className={styles.next}>next</button>
-      </div>))
-     }
+    
 
    </>
   
@@ -158,20 +129,21 @@ imprime.map(job=>(
    </div>
    </QueryClientProvider>
     </>
-    )
+  )
 }
+
 
 
 const { publicRuntimeConfig } = getConfig()
 
 export async function getServerSideProps({ query: { page = 1 } }) {
-  const start = +page === 1 ? 0 : (+page - 1) * 8
+  const start = +page === 1 ? 0 : (+page - 1) * perPage
 
   const resJobs = await fetch(`${publicRuntimeConfig.API_URL}/posts/count`)
   const numJobs = await resJobs.json()
 
 
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC&_limit=8&_start=${start}`)
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_limit=${perPage}&_start=${start}`)
   const data = await res.json()
 
   const resCategory = await fetch(`${publicRuntimeConfig.API_URL}/categories`)

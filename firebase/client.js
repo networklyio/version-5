@@ -67,7 +67,7 @@ const setPeople = (displayName, email, photoURL)=>{
       formData = new FormData()
       formData.append('name',displayName)
       formData.append('email',email)
-      console.log(FormData)
+      //console.log(FormData)
       fetch(`${publicRuntimeConfig.API_URL}/candidates`,{
         method: 'POST',
         body:JSON.stringify(FormData)

@@ -46,7 +46,7 @@ function App({ content = [], config = {}, background = [] }) {
   const [isItRevers, setRevers] = useState(false);
   //update state
   React.useEffect(() => {
-    console.log("use effect");
+    //console.log("use effect");
 
     const myDataContent =
       content.length > 0 &&

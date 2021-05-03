@@ -54,7 +54,7 @@ export default function Employer({states}) {
             body: JSON.stringify(messageInfo)
         })
         const addResponse = await add.json()
-        console.log(addResponse,messageInfo)
+        //console.log(addResponse,messageInfo)
     }
     
     const onSubmit = (data) => {

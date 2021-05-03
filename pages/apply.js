@@ -40,6 +40,13 @@ export default function ApplyMe() {
 
   const jwt = parseCookies().jwt
 
+/*   useEffect(()=>{
+     if(verVideo=='ED'){
+setVerVideo(true)  } 
+console.log('Renderizando desde Ver video') 
+  },[setVerVideo])
+ */  
+
   useEffect(()=>{
     const resultado = getMyData()
     resultado.then(r=>{
@@ -72,8 +79,8 @@ export default function ApplyMe() {
         }
       })
     }
-
-  },[])
+  console.log('valor de ver video: '+ verVideo)
+  },[verVideo])
   
   //console.log('usuario',usuario,user,loading)
 
@@ -112,6 +119,9 @@ export default function ApplyMe() {
    logear(userId)
    console.log('usuario',usuario)
    setStatement(userId)
+   setVerVideo('SI')
+   Swal.fire('Register stored correctly')
+
   }
   {(loading && <div>Loading......</div>)}
   {(user && <div>Usuario</div>)}
@@ -129,7 +139,7 @@ export default function ApplyMe() {
       <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Form W-4</a>
 
 
-      <a href="/assets/pdf/MP-Timecard.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>MP-Timecard</a>
+      <a href="/assets/pdf/MP-Timecard.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Timesheet</a>
       </div>
         <h2>Watch the security videos is mandatory to be considered for the job</h2>
         <h2>We highly recommend to watch our <a className={styles.aa} href="/focal-points">Focal Points</a> with all the security videos</h2>
@@ -146,15 +156,22 @@ export default function ApplyMe() {
 
 </div>
 
+
 <form onSubmit={handleStatement}>
-    <h3>I declare that I watched the safety videos to be considered for the job <CheckIcon/></h3>
+  {
+    (verVideo =='NO' && <h3>I declare that I watched the safety videos to be considered for the job <CheckIcon/></h3>)
+  }
+    
     {
-      (verVideo=='SI' && <button className={styles.botonqq}>I declare that I saw the security videos</button>)
+      (verVideo=='SI' && <button className={ verVideo=='NO' ? 'styles.hiddenV' : 'styles.botonqq'}>I declare that I saw the security videos</button>)
     }
   </form>
 
 
-  <h2>Upload your resume or to create a resume click here</h2>
+  <h2>
+    Upload your resume or to create a resume click here
+    
+  </h2>
 
 {/* {userResumen.avatar && <img className={styles.img} src={`${publicRuntimeConfig.API_URL}${userResumen.avatar.url}` } alt={userResumen.name} width="30px"/>} */}
 <h3>{userResumen.name}</h3>
@@ -167,7 +184,7 @@ export default function ApplyMe() {
 {userResumen.resume &&  (<a className={styles.pdf1} href={`${publicRuntimeConfig.API_URL}${userResumen.resume.url}`} target="_blank" download><PictureAsPdfIcon />Download resume: {userResumen.name}</a>)
         }
         
-        <h1>Upload a PDF file with your I-94 or W-4 filled out</h1>
+  <h1>Upload a PDF file with your I-94 or W-4 filled out</h1>
   <form className={styles.form}>
   <input className={styles.submit2} type="file" name="files" onChange={e=>(setDocument(e.target.files[0]))} defaultValue={document}
   accept="application/pdf" required/>

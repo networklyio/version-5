@@ -1,149 +1,111 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import Select from 'react-select'
-import Link from 'next/link'
-
-
-
-
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { QueryClientProvider, useQuery, useQueryClient , usePaginatedQuery} from 'react-query'
-
+import Link from 'next/link'
+import Select from 'react-select'
+import { QueryClientProvider, useQuery, useQueryClient } from 'react-query'
 import styles from '../jobs/jobs.module.css'
 import RoomIcon from '@material-ui/icons/Room'
 import TuneIcon from '@material-ui/icons/Tune'
 import HeaderJobs from '../../components/HeaderJobs/HeaderJobs'
-
-
+import SearchInput from '../../components/SearchInput/SearchInput'
 
 import getConfig from 'next/config'
+import States from '../jobs/states/States'
+import Categories from '../jobs/[category]/Categories'
+import Post from './posts/posts'
+import Items from './items/Items'
 
-const perPage=100
 
 
-export default function jobPage({ jobs, page, numJobs,category, states }) {
-  const router = useRouter()
+
+export default function jobsPage({jobs,categories,states}) {
   const queryClient = useQueryClient()
+  const [isLoading, setIsLoading] = useState(false)
   const [categoryId, setCategoryId] = useState(null)
-  const [stateId, setstateId] = useState(null)
+  const [stateId, setStateId] = useState(null)
   const [isFiltered, setIsFiltered] = useState(false)
-  const [datos, setDatos] = useState([])
-  const lastPage = Math.ceil(numJobs / perPage)
+  const [postsList , setPostsList ] = useState([])
+  const [currentPage, setCurrentPage] = useState(0)
+  const [perPage, setPerPage] = useState(5)
+  let totalPage = 0
+  let str = ''
 
+const filterPost = ()=>{
+const resultado = (jobs.filter(job=>{
+ if(categoryId && stateId) return (job.category?.id==categoryId && job.state?.id==stateId )
+ if(categoryId) return job.category?.id==categoryId
+ if(stateId) return job.state?.id==stateId
+ return  job
+}))
+totalPage = resultado.length
 
-  const getJobs = async (key) =>{
-    const idCategory = key.queryKey[1].category
-    const stateId = key.queryKey[2].states
+return resultado.slice(currentPage,currentPage+perPage)
+}
+
+  const nextPage = ()=>{
+ if(totalPage>currentPage+perPage)
+    setCurrentPage(currentPage+perPage)
+  }
+
+  const prevPage = ()=>{
+    if(currentPage-perPage>=0)
+    setCurrentPage(currentPage-perPage)
+  }
+
+  useEffect(() => {
     const query = []
+    if(categoryId){query.push(`job.category?.id==${categoryId}`)}
+    if(stateId){query.push(`job.state?.id==${stateId}`)}
+    if(categoryId)  setIsFiltered(true)
+    if(stateId) setIsFiltered(true)
+    str = ``
+    if(isFiltered) str = (`${query.join(' && ')}`)     
 
-  if(idCategory){query.push(`category=${idCategory}`)}
-  if(stateId){query.push(`state=${stateId}`)}
-  const str =`?${query.join('&')}`
-  console.log(str)
-  if(idCategory || stateId){ 
-    setIsFiltered(true)
-  } else{
-    setIsFiltered(false)
-  }
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts${str}`)
-  return res.json() 
-
-  }
-
-  const { data, status } = useQuery(['jobs', { category: categoryId }, { states: stateId }], getJobs, { initialData: jobs })
-
-
+  }, [])
+  
 
 
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-    <HeaderJobs />
-
+  <QueryClientProvider client={queryClient}>
+   <HeaderJobs />
    <div className={styles.principal}>
    <div  className={styles.filtro}>
             <p className={styles.filterTitle}>Filter by</p>
             <div>
-            <Select getOptionLabel={option => option.name}
-              getOptionValue={option => option.id}
-              options={category} instanceId="category" placeholder="Filter by category"
-              isClearable
-              onChange={value => setCategoryId(value ? value.id : null)} className={styles.filtro}/>
+           <Categories categories={categories} setCategoryId ={setCategoryId}/>
             </div>
-            <div>
-
-            <Select
-            getOptionLabel={option => option.name}
-            getOptionValue={option => option.id}
-            options={states}
-            instanceId="states"
-            placeholder="Filter by state"
-            isClearable
-            onChange={value => setstateId(value ? value.id : null)}
-          />
-            </div>
-            <div className={styles.filterOption}>
-            </div>
-            <div className={styles.settings}>
-                <i className={styles.fas}><TuneIcon/></i>
-            </div>
-        </div>
-        <div className={styles.listado}>
-        <>
-        {status === 'loading' && <div>Data is loading</div>}
-        {status === 'error' && <div>Error in loading</div>}
-        { status === 'success' &&
-data.map(job=>(
-<Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category?.slug}/${job.slug}`} key={job.id} > 
-<section className={styles.jobSearch} key={job.id}>
-        <div className={styles.jobs}>
-          <div className={styles.jobList}>
-        <div className={styles.jobPosition}>
-          <img className={styles.img} src="/assets/media/home/paper-look.svg" alt="paper icon" />
-          <div className={styles.jobTitle}>
-            <h3 className={styles.h3}>{job.position}</h3><h4><small></small> </h4>
-            <p className={styles.p}>${job.min_salary} - ${job.max_salary}</p>
+          <div>
+          <States states={states}  setStateId ={setStateId}/>
           </div>
-        </div >
-        <div className={styles.location}>
-          <h4><p></p></h4>
-      
-        <i className={styles.fas}><RoomIcon /></i>
-          <p className={styles.p}>{job.City}, {job.state && job.state.name}</p>
-        </div>
-        <div className={styles.timePosition}>
-          <p className={styles.p}>{job.schedule.name}</p>
-        </div>
+          <div className={styles.filterItem}>
+          <Items setPerPage ={setPerPage} />
+          </div>
+    </div>
+    <div className={styles.listado}>
+    {/* <h1>List of Jobs: {totalPage} page:{currentPage}</h1> */}
+    <Post postsList={filterPost()} isLoading={isLoading}/>
+
+    </div>
+    </div>
+    </QueryClientProvider>
+    <div className={styles.btnPaginate}>
+      <button   className={styles.previous} onClick={prevPage}>previous</button>
+      <button  className={styles.next} onClick={nextPage}>next</button>
       </div>
-      <div/>
-       </div>
-      </section>
-      </Link>
-
-))} 
-    
-
-   </>
-  
-       </div>
-   </div>
-   </QueryClientProvider>
     </>
   )
 }
 
-
-
 const { publicRuntimeConfig } = getConfig()
 
-export async function getServerSideProps({ query: { page = 1 } }) {
-  const start = +page === 1 ? 0 : (+page - 1) * perPage
-
+export async function getServerSideProps() {
+  
   const resJobs = await fetch(`${publicRuntimeConfig.API_URL}/posts/count`)
   const numJobs = await resJobs.json()
 
 
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_limit=${perPage}&_start=${start}`)
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC`)
   const data = await res.json()
 
   const resCategory = await fetch(`${publicRuntimeConfig.API_URL}/categories`)
@@ -155,9 +117,8 @@ export async function getServerSideProps({ query: { page = 1 } }) {
   return {
     props: {
       jobs: data,
-      page: +page,
       numJobs: numJobs,
-      category: dataCategory,
+      categories: dataCategory,
       states: dataStates
     }
   }
