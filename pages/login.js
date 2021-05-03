@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 const { publicRuntimeConfig } = getConfig();
 
 export default function Login() {
-  const [username, setUsername] = useState('registro@gmail.com')
-  const [password, setPassword] = useState('12345678')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [errores, setErrores] = useState('')
   const [resultadLogin, setResultadLogin] = useState({})
 

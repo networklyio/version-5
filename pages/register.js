@@ -14,9 +14,9 @@ const { publicRuntimeConfig } = getConfig();
 
 function Register() {
     destroyCookie(null, 'jwt')
-    const [username, setUsername] = useState('registro de prueba 3')
-    const [email, setEmail] = useState('registro3@gmail.com')
-    const [password, setPassword] = useState('12345678')
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     async function handleRegister() {
         const registerInfo = {
