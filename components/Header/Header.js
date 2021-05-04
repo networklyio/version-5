@@ -10,6 +10,15 @@ import LinkedinIcon from '@material-ui/icons/LinkedIn'
 import styles from "./Header.module.css"
 
 export default function Header({navigation}) {
+  function closeMenu(event){
+
+      if (event.target instanceof HTMLAnchorElement) {
+         //alert('xx')
+         //const x = document.getElementById("toggler");
+         document.getElementById('toggler').click();
+      }
+    
+  }
   return (
     <>
     <header>
@@ -46,17 +55,17 @@ export default function Header({navigation}) {
             </div>
           </div>
         </nav>
-        <div className={styles.menuWrap}>
-          <input type="checkbox" className={styles.toggler} />
+        <div className={styles.menuWrap} id="menuWrap">
+          <input type="checkbox" className={styles.toggler} id="toggler" />
           <div className={styles.hamburger}>
             <div className={styles.div1}>{/* <!-- do not delete this empty div --> */}</div></div>
-          <div className={styles.menuMobile}>
+          <div className={styles.menuMobile} id="menuMobile">
             <div className={styles.div2}>
               <div className={styles.div3}>
                 <ul className={styles.ul}>
                 {navigation.map(item =>(
-       <li key={item.id} className={styles.li}>
-         <Link href={item.slug}><a>{item.page}</a></Link>
+       <li key={item.id} className={styles.li} onClick={closeMenu}>
+         <Link href={item.slug} ><a>{item.page}</a></Link>
          </li>
      ))}
                 </ul>
