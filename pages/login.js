@@ -43,7 +43,7 @@ export default function Login() {
           path: '/',
       })
       
-      Swal.fire(`Welcome to Labor Staffer`, 'please click ok so that you know the policies established by law and to fill out the forms and update your curriculum', 'success')
+      Swal.fire(`Welcome to Labor Staffer`, 'Please press OK to continue', 'success')
  .then((result) => {
    //console.log(result);
    if(result) {

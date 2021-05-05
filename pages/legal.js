@@ -143,7 +143,7 @@ const upload = async (e)=>{
       path: '/',
   })
 
-    Swal.fire(`Labor Staffers`, 'On behalf of Labor Staffers we thank you for watching the safety videos, that way we comply with the law with ourselves.', 'success')
+    Swal.fire(` Safety Videos`, 'Thank you! if you have any questions please contact us', 'success')
     .then((result) => {
       console.log(result);
       if(result) {
