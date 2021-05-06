@@ -198,7 +198,13 @@ const upload = async (e)=>{
       <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Form W-4</a>
 
 
-      <a href="/assets/pdf/MP-Timecard.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Timesheet</a>
+      <a href="/assets/pdf/Time Card for Labor Staffers.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Time Card for Labor Staffers</a>
+
+      <a href="/assets/pdf/Employee Agreement.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Employee Agreement</a>
+
+      <a href="/assets/pdf/Direct Deposit Form INVOPEO.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Direct Deposit Form</a>
+
+
       </div>
         <h2>Watch the security videos is mandatory to be considered for the job</h2>
         <h2>We highly recommend to watch our <a className={styles.aa} href="/focal-points">Focal Points</a> with all the security videos</h2>
