@@ -198,7 +198,7 @@ const upload = async (e)=>{
       <a href="/assets/pdf/w-4 Form.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Form W-4</a>
 
 
-      <a href="/assets/pdf/Time Card for Labor Staffers.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Time Card for Labor Staffers</a>
+      <a href="/assets/pdf/Time Card for Labor Staffers.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Timesheet</a>
 
       <a href="/assets/pdf/Employee Agreement.pdf" target="_blank" download className={styles.pdf1}><PictureAsPdfIcon/>Download Employee Agreement</a>
 
