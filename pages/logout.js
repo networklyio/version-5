@@ -14,7 +14,6 @@ import React from 'react'
 
 export default function logout() {
  const Redirect = redirect('/', { statusCode: 302 })
-
  const [count, setCount] = useState(0)
     setCookie(null, 'jwt', undefined, {
     maxAge: 30 * 24 * 60 * 60,

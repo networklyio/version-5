@@ -14,7 +14,7 @@ export default function Table() {
     })
   },[]) 
 
-  console.log(data)
+  //console.log(data)
 
   const tableInstance = useTable({
     columns,

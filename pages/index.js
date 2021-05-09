@@ -12,14 +12,14 @@ import S5 from '../components/S5/S5'
 
 const { publicRuntimeConfig } = getConfig()
 
-export default function Home({ jobs }) {
-  console.log(jobs,'desde index')
+export default function Home({ jobs,numJobs }) {
+  //console.log(jobs,'desde index')
   return (
    <div>
      <BgVideo />
      <S1 />
      <S2 />
-     <S3 jobs={jobs} />
+     <S3 jobs={jobs} numJobs={numJobs} />
      <S5 />
      <S4 />
    </div>
@@ -27,11 +27,15 @@ export default function Home({ jobs }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC&_limit=8`)
+
+  const resJobs = await fetch(`${publicRuntimeConfig.API_URL}/posts/count`)
+  const numJobs = await resJobs.json()
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC&_limit=10`)
   const jobs = await res.json()
   return {
     props: {
-      jobs
+      jobs,
+      numJobs
     }, // will be passed to the page component as props
     
   }

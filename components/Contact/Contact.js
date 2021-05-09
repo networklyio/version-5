@@ -11,7 +11,7 @@ const { publicRuntimeConfig } = getConfig()
 
 export default function Contact({states}) {
 
-    console.log(states,publicRuntimeConfig.API_URL)
+    //console.log(states,publicRuntimeConfig.API_URL)
 
     const {register, handleSubmit, errors} = useForm()
 
@@ -52,7 +52,7 @@ export default function Contact({states}) {
             body: JSON.stringify(messageInfo)
         })
         const addResponse = await add.json()
-        console.log(addResponse,messageInfo)
+        //console.log(addResponse,messageInfo)
     }
     
     const onSubmit = (data) => {

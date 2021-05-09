@@ -24,7 +24,7 @@ useEffect(()=>{
 }).then(response=>response.json()).then(json=>{
   setActual(json)
   setLoading(false)
-  console.log('luego',actual,json)
+  //console.log('luego',actual,json)
 }) 
 if(loading===false) return actual
 },[])

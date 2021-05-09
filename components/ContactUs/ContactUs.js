@@ -17,7 +17,7 @@ function toPolicies(){
 
 export default function ContactUS({states}) {
 
-    console.log(states,publicRuntimeConfig.API_URL)
+    //console.log(states,publicRuntimeConfig.API_URL)
 
     const {register, handleSubmit, errors} = useForm()
 

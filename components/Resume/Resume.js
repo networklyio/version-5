@@ -84,7 +84,7 @@ export default function Resume(candidate,data) {
         return null
 
       }else{
-        console.log('ADDRESPONSE',addResponse,'ADD',add)
+       // console.log('ADDRESPONSE',addResponse,'ADD',add)
         Swal.fire("Yor Resume is Ok");
       }
        
@@ -158,7 +158,7 @@ export default function Resume(candidate,data) {
 
 async function getProfile(candidate)
 {
-  console.log(candidate.candidate.email)
+  //console.log(candidate.candidate.email)
   const url = `${publicRuntimeConfig.API_URL}/candidates?email=${candidate.candidate.email}`
   const res = await fetch(url)
   const data = await res.json()

@@ -48,7 +48,7 @@ function Services() {
         </div>
         <div className={styles.sectionText}>
           < h2 className={styles.h2}>Our areas of expertise</h2>
-          <p className={styles.p}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          <p className={styles.p}>We offer different professional fields, from technology, support, engineering, sales, design to heavy duty personnel.</p>
         </div>
         <div className={styles.breaker}>
           < div className={styles.iconSection}>

@@ -3,7 +3,7 @@ import {UserContext} from '../../context/UserContext'
 
 export default function Statement() {
   let {usuario} = useContext(UserContext)
-  console.log(usuario)
+  //console.log(usuario)
 
   return (
     <>

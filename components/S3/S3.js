@@ -1,16 +1,36 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import styles from '../S3/S3.module.css'
 import RoomIcon from '@material-ui/icons/Room'
 import Link from 'next/link'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import getConfig from 'next/config'
 
-function S3({jobs}) {
-console.log('Jobs de Clase,', jobs)
+
+const { publicRuntimeConfig } = getConfig()
+
+function S3({jobs,numJobs}) {
+const [data, setData] = useState(jobs)
+const [hasMore, setHasMore] = useState(true)
+
+const getMostData = async ()=>{
+
+  
+
+  const res = await fetch(`${publicRuntimeConfig.API_URL}/posts?_sort=id:DESC&_limit=10&_start=${data.length}`)
+  const newData = await res.json()
+  setData(data=>[...data, ...newData])
+}
+
+useEffect(()=>{
+  setHasMore(numJobs > data.length ? true:false)
+},[data])
+
   return (
     <>
-   
+  
      
       {
-        jobs.map(job=>(
+        data.map(job=>(
           <Link href="/jobs/[category]/[slug]" as={`/jobs/${job.category?.slug}/${job.slug}`} key={job.id} > 
           <section key={job.id}>
         <div className={styles.jobList}>

@@ -11,7 +11,7 @@ let [usuario,setUsuario] = useState(null)
 
 function logear(data){
   setUsuario(data)
-  console.log('Seteado context usuario',usuario)
+  //console.log('Seteado context usuario',usuario)
  }
  
 function deslogear(){setUsuario(null)}

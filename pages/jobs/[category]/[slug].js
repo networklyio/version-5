@@ -103,12 +103,15 @@ const  goToApply = (e)=>{
 
     Swal.fire({
       icon: 'success',
-      text: `great, you applied correctly.
-      now, take a look at the legal part of the contract` ,
+      text: `Please press OK to continue` ,
       title: 'You have applied correctly!',
       footer: '<a href>Why do I have this issue?</a>'
-    })
-    Router.push('/apply')
+    }).then((result) => {
+      //console.log(result);
+      if(result) {
+       window.location = "/apply";
+      }
+    })  
   }
 applyJob()
 }

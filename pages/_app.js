@@ -54,7 +54,13 @@ MyApp.getInitialProps = async ({ctx}) => {
   {
     const res = await fetch(`${publicRuntimeConfig.API_URL}/navigations?isNotLoged=true`)
     const navigation = await res.json()
-   
+    //console.log(ctx.pathname,'Desde Inicial',jwt)
+    
+    if (isNotLoged===true) {
+    if (ctx.pathname === "/legal") {
+        redirectUser(ctx, "/login");
+    }}
+ 
     return { navigation}
   }else{
     const res = await fetch(`${publicRuntimeConfig.API_URL}/navigations?isLoged=true`)
@@ -62,12 +68,7 @@ MyApp.getInitialProps = async ({ctx}) => {
     return { navigation}
   }
 
-  if (isNotLoged===true) {
-    if (ctx.pathname === "/apply") {
-        redirectUser(ctx, "/login");
-    }
-}
-
+  
   
 }
 

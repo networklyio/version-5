@@ -1,11 +1,11 @@
 export default {
-    title: "Labor Straffer",
-    description: "Database of Jobs created with Next.js and Strapi",
+    title: "Labor Staffers",
+    description: "Labor Staffers makes hiring staff quicker and easier than ever before. Apply with us in seconds and fill your vacancy today. Take the hassle out of hiring or apply for a new job as well.",
     openGraph: {
         type: 'website',
         locale: 'en_IE',
-        url: 'https://www.laborstraffer.test',
-        site_name: 'Labor Straffer',
+        url: 'https://www.laborstaffers.com',
+        site_name: 'Labor Staffers',
     },
     twitter: {
         handle: '@gabriel',
